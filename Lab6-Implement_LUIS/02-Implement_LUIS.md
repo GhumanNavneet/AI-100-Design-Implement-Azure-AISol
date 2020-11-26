@@ -1,4 +1,4 @@
-# Lab 6: Implementing the LUIS model
+# Lab 1: Implementing the LUIS model
 
 This hands-on lab guides you through creating a model to enhance the Natural Language Processing capabilities of your applications, using Microsoft's Language Understanding Intelligent Service (LUIS).
 
@@ -26,7 +26,7 @@ As a review, these are the steps you will generally take when creating LUIS appl
   6. [Review endpoint utterances](https://docs.microsoft.com/en-us/azure/cognitive-services/LUIS/label-suggested-utterances)
   7. [Publish](https://docs.microsoft.com/en-us/azure/cognitive-services/LUIS/publishapp)
 
-## Lab 6.0: Creating the LUIS service in the portal (optional)
+## Lab 1.0: Creating the LUIS service in the portal (optional)
 
 Creating a LUIS service in the portal is optional, as LUIS provides you with a "starter key" that you can use for the labs. However, if you want to see how to create a free or paid service in the portal, you can follow the steps below.  
 
@@ -64,7 +64,7 @@ Creating a LUIS service in the portal is optional, as LUIS provides you with a "
 
 **Note** The Luis AI web site does not allow you to control or publish your Azure based cognitive services resources.  You will need to call the APIs in order to train and publish them.
 
-## Lab 6.1: Adding intelligence to your applications with LUIS
+## Lab 1.1: Adding intelligence to your applications with LUIS
 
 Let's look at how we can use LUIS to add some natural language capabilities. LUIS allows you to map natural language utterances (words/phrases/sentences the user might say when talking to the bot) to intents (tasks or actions the user wants to perform). For our application, we might have several intents: finding pictures, sharing pictures, and ordering prints of pictures, for example. We can give a few example utterances as ways to ask for each of these things, and LUIS will map additional new utterances to each intent based on what it has learned.
 
@@ -183,7 +183,7 @@ When choosing utterances, it can be helpful to use a combination of questions, c
 
 1. Finally add some sample utterances to the "None" intent. This helps LUIS label when things are outside the scope of your application. Add things like "I'm hungry for pizza", "Search videos", etc. You should have about 10-15% of your app's utterances within the None intent.
 
-## Lab 6.2: Training the LUIS model
+## Lab 1.2: Training the LUIS model
 
 We're now ready to train our model. In this exercise, you will perform a simple training operation in order to test your model.  The testing will take place using the built-in testing panel in the LUIS portal.
 
