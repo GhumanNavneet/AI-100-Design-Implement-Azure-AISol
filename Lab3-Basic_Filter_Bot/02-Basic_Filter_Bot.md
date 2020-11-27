@@ -142,17 +142,34 @@ A bot created using the Microsoft Bot Framework can be hosted at any publicly-ac
 
 1. Right-click the **Bots/Echobot.cs** file, then select **Rename**, rename the class file to **PictureBot.cs**
 
-1. If you are not prompted then you will need to manually rename the class and then change all references to the class to **PictureBot**.  You will know if you missed one when you attempt to build the project.
+1. If you are not prompted then you will need to manually rename the class and then change all references to the class to **PictureBot**.  You will know if you missed one when you attempt to build the project.Click **Yes** for the pop-up as same as in the below image.
+
+    ![](./21.png)
+    
+    ![](./22.png)
 
 1. Right-click the project, select **Manage Nuget Packagaes**
 
-1. Select the **Browse** tab, and install the following packages, ensure that you are using version **4.6.3**:
+1. Select the **Browse** tab, and install the following packages, ensure that you are using latest version:
 
-      * Microsoft.Bot.Builder.Azure
-      * Microsoft.Bot.Builder.AI.Luis
+      * Microsoft.Bot.Builder.Azure.Blobs
       * Microsoft.Bot.Builder.Dialogs
-      * Microsoft.Azure.Search (version, 10.1.0 or later)
-      
+      * Microsoft.Bot.Builder.AI.Luis
+      * Microsoft.Bot.Builder.Integration.AspNet.Core
+      * Azure.AI.TextAnalytics
+
+1. To perform the installation follow these steps
+
+1. Right-Click the solution and click **Manage NuGet Packages for solution**
+
+   ![](./23.png)
+   
+1.  Type **Microsoft.Bot.Builder.Azure.Blobs** and intall the package as shown in the image.
+
+   ![](./24.png)
+   
+1. Please follow the above steps for the remaining packages.
+
 1. Navigate to **Startup.cs** file and add the below line of code in `namespace PictureBot`:
 
 ```csharp
