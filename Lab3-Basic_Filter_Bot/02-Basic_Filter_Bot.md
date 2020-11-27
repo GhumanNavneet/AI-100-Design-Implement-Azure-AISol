@@ -112,13 +112,15 @@ A bot created using the Microsoft Bot Framework can be hosted at any publicly-ac
      >[!CAUTION]
      >Depending on the version of Visual Studio installed, the below screenshot may be different from your own.  If you see multiple versions listed for the Echo Bot template, choose version 3.1 and not version 2.1.
 
-     ![Select the Echo Bot project template](../images/NewBotProject.png)
+     ![Select the Echo Bot project template](./18.png)
 
 1. Select **Next**
 
       > **Note** If you do not see the Echo Bot template, you need to install the Visual Studio add-in from the pre-req steps.
 
 1. For the name, type **PictureBot**, select **Create**
+
+   ![](./19.png)
 
 1. Spend some time looking at all of the different things that are generated from the Echo Bot template. We won't spend time explaining every single file, but we **highly recommend** spending some time **later** working through and reviewing this sample (and the other Web App Bot sample - Basic Bot), if you have not already. It contains important and useful shells needed for bot development. You can find it and other useful shells and samples [here](https://github.com/Microsoft/BotBuilder-Samples).
 
@@ -132,7 +134,10 @@ A bot created using the Microsoft Bot Framework can be hosted at any publicly-ac
           "MicrosoftAppPassword": "YOURAPPSECRET"
       }
     ```
-
+ 1. After editing the values it should look like the below image:-
+ 
+    ![](./20.png)
+ 
 1. As you may know, renaming a Visual Studio Solution/Project is a very sensitive task. **Carefully** complete the following tasks so all the names reflect PictureBot instead of EchoBot:
 
 1. Right-click the **Bots/Echobot.cs** file, then select **Rename**, rename the class file to **PictureBot.cs**
