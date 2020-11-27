@@ -21,9 +21,13 @@ A bot created using the Microsoft Bot Framework can be hosted at any publicly-ac
 
 2. In the portal, navigate to your resource group, then select **+Add** and search for **bot**.
 
- ![Bot template area is highlighted and the language and bot type is selected.](../images/rg.jpg 'Select the bot type')
+   ![Bot template area is highlighted and the language and bot type is selected.](../images/rg.jpg 'Select the bot type')
+   
+   ![](./1.png)
 
 3. Select **Web App Bot**, and select **Create**.
+
+   ![](./2.png)
 
 4. For the name, you'll have to create a unique identifier. We recommend using something along the lines of PictureBot[i][n] where [i] is your initials and [n] is a number (e.g. mine would be PictureBotamt6).
 
@@ -33,13 +37,21 @@ A bot created using the Microsoft Bot Framework can be hosted at any publicly-ac
 
 7. Select the Bot template area
 
+   ![](./4.png)
+
 8. Select **C#**, then select **Echo Bot**, later we will update it to our our PictureBot.
 
-    ![Bot template area is highlighted and the language and bot type is selected.](../images/lab02-createbot.png 'Select the bot type')
+   ![](./5.png)
 
 9. Select **OK**, make sure that **Echo Bot** is displayed.
 
 10. Configure a new App service plan (put it in the same location as your bot)
+
+   ![](./6.png)
+   
+   ![](./7.png)
+   
+   ![](./8.png)
 
 11. You can choose to turn Application Insights on or off.
 
@@ -47,15 +59,21 @@ A bot created using the Microsoft Bot Framework can be hosted at any publicly-ac
 
 13. Select **Create**
 
+   ![](./9.png)
+
 14. When it's deployed, navigate to the new Azure Web App Bot Resource.
+
+   ![](./10.png)
 
 15. Under **Bot Management**, select **Settings**
 
 16. Select the **Manage** link for the **Microsoft App ID**
 
-      ![Select the Manage link](../images/ManageBot.png)
+   ![](./11.png)
 
 17. Select **New client secret**
+
+   ![](./12.png)
 
 18. For the name, type **PictureBot**
 
@@ -63,15 +81,21 @@ A bot created using the Microsoft Bot Framework can be hosted at any publicly-ac
 
 20. Select **Add**
 
+   ![](./13.png)
+
 21. Record the secret into notepad or similar for later use in the lab(s).
 
+   ![](./14.png)
+
 22. Select **Overview**, record the application id into notepad or similar for later use in the lab(s).
+
+   ![](./15_1.png)
 
 23. Navigate back to the **web app bot** resource, under **Bot management**, select the **Test in Web Chat** tab
 
 24. Once it starts, explore what it is capable of doing.  As you will see, it only echos back your message.
 
-![The basic echo bot response](../images/EchoBot.png)
+   ![](./16.png)
 
 ## Lab 1.1: Creating a simple bot and running it
 
