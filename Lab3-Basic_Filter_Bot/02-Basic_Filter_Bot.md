@@ -164,7 +164,7 @@ A bot created using the Microsoft Bot Framework can be hosted at any publicly-ac
 
    ![](./23.png)
    
-1. Type **Microsoft.Bot.Builder.Azure.Blobs** and install the package as shown in the image. Go to **Browse**, search for the package in toolbar and then install by selecting the latest version
+1. Type **Microsoft.Bot.Builder.Azure.Blobs** and install the package as shown in the image. Go to **Browse**, search for the package in searchbar and then install by selecting the latest version
 
    ![](./24.png)
    
