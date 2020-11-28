@@ -145,6 +145,8 @@ A bot created using the Microsoft Bot Framework can be hosted at any publicly-ac
 1. If you are not prompted then you will need to manually rename the class and then change all references to the class to **PictureBot**.  You will know if you missed one when you attempt to build the project.Click **Yes** for the pop-up as same as in the below image.
 
     ![](./21.png)
+
+1. After renaming, we will see the PictureBot.cs file in Bots folder.
     
     ![](./22.png)
 
