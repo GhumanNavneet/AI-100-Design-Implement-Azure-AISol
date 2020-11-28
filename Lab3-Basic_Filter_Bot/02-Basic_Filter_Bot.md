@@ -178,7 +178,7 @@ A bot created using the Microsoft Bot Framework can be hosted at any publicly-ac
    
       ![](./26.png)
    
-1. Please follow the above step 16 for installing remaining packages.
+1. Please follow the above step 17 for installing remaining packages.
 
 1. Navigate to **Startup.cs** file and add the below line of code in `namespace PictureBot` and comment the particular code as we will need to use them afterwards:
 
@@ -201,9 +201,12 @@ A bot created using the Microsoft Bot Framework can be hosted at any publicly-ac
       using PictureBot.Bots;
       public class Startup
    ```
-![](./26_1.png)
+   ![](./26_1.png)
 
  1. Build the solution.
+ 
+    ![](./27.png)
+    
 
     >**TIP**:  If you only have one monitor and you would like to easily switch between instructions and Visual Studio, you can now add the instruction files to your Visual Studio solution by right-clicking on the project in Solution Explorer and selecting **Add > Existing Item**. Navigate to "Lab2," and add all the files of type "MD File."
 
@@ -228,15 +231,27 @@ For example, if I say "Hello bot" and the bot responds "Hi, how are you?" that i
 
       * Note the localhost port number for the web page. This should (and must) match the endpoint in your Emulator.
 
+1. The browser will pop-up displaying bot web page as shown in the below image. Please copy the same as mentioned in the image to notepad.
+
+   ![](./29.png)      
+
      >Get stuck or broken? You can find the solution for the lab up until this point under {GitHubPath}/code/Finished/PictureBot-Part0. The readme file within the solution (once you open it) will tell you what keys you need to add in order to run the solution.
 
    #### Using the Bot Framework Emulator
 
      To interact with your bot:
 
-1. Launch the Bot Framework Emulator (note we are using the v4 Emulator).  Select **Start**, then search for **Bot Emulator**.
+1. Launch the Bot Framework Emulator (note we are using the v4 Emulator).  Select **Start**, then search for **Bot Emulator** or you will find it in the desktop.
+
+   ![](./bot_1.png)
+
+1. Please update the bot emulator. Select **Install this update and restart emulator**
+
+   ![](./30.png)
 
 1. On the welcome page, select **Create a new bot configuration**
+
+   ![](./31.png)
 
 1. For the name, type **PictureBot**
 
@@ -247,6 +262,8 @@ For example, if I say "Hello bot" and the bot responds "Hi, how are you?" that i
      >**Note** If you do not enter id and secret values into the bot settings you would also not need to enter the values in the bot emulator
 
 1. Select **Save and connect**, then save your .bot file locally
+
+   ![](./32.png)
 
 1. You should now be able to converse with the bot.
 
