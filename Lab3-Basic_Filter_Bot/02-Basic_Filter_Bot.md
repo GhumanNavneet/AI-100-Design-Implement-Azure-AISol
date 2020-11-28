@@ -170,31 +170,40 @@ A bot created using the Microsoft Bot Framework can be hosted at any publicly-ac
 
    ![](./24.png)
    
+   i) Click ok to install the package
+   
+      ![](./25.png)
+   
+   ii) Accept the License 
+   
+      ![](./26.png)
+   
 1. Please follow the above step 16 for installing remaining packages.
 
-1. Navigate to **Startup.cs** file and add the below line of code in `namespace PictureBot`:
+1. Navigate to **Startup.cs** file and add the below line of code in `namespace PictureBot` and comment the particular code as we will need to use them afterwards:
 
-```csharp
+   ```csharp
     using PictureBot.Bots;
    ```
   
   After adding, it looks like below.
-```
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.Bot.Builder;
-using Microsoft.Bot.Builder.Integration.AspNet.Core;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
+   ```
+    using Microsoft.AspNetCore.Builder;
+    using Microsoft.AspNetCore.Hosting;
+    using Microsoft.Bot.Builder;
+    using Microsoft.Bot.Builder.Integration.AspNet.Core;
+    using Microsoft.Extensions.Configuration;
+    using Microsoft.Extensions.DependencyInjection;
+    using Microsoft.Extensions.Hosting;
 
-namespace PictureBot
-{
-    using PictureBot.Bots;
-    public class Startup
-```
+    namespace PictureBot
+    {
+      using PictureBot.Bots;
+      public class Startup
+   ```
+![](./26_1.png)
 
-1. Build the solution.
+ 1. Build the solution.
 
     >**TIP**:  If you only have one monitor and you would like to easily switch between instructions and Visual Studio, you can now add the instruction files to your Visual Studio solution by right-clicking on the project in Solution Explorer and selecting **Add > Existing Item**. Navigate to "Lab2," and add all the files of type "MD File."
 
