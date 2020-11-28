@@ -134,7 +134,7 @@ A bot created using the Microsoft Bot Framework can be hosted at any publicly-ac
           "MicrosoftAppPassword": "YOURAPPSECRET"
       }
     ```
- 1. After editing the values it should look like the below image:-
+1. After editing the values it should look like the below image:-
  
     ![](./20.png)
  
@@ -164,7 +164,7 @@ A bot created using the Microsoft Bot Framework can be hosted at any publicly-ac
 
    ![](./23.png)
    
-1.  Type **Microsoft.Bot.Builder.Azure.Blobs** and intall the package as shown in the image.
+1. Type **Microsoft.Bot.Builder.Azure.Blobs** and intall the package as shown in the image.
 
    ![](./24.png)
    
