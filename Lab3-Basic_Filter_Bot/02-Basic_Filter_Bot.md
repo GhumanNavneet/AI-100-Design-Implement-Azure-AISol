@@ -312,7 +312,11 @@ For example, if I say "Hello bot" and the bot responds "Hi, how are you?" that i
    ```
 
    We won't use all of the above namespaces just yet, but can you guess when we might?
-   
+
+1. After adding it should look like this:-
+
+   ![](./34.png)
+
 1. Remove the line **using PictureBot.Bots;** from the namespace **PictureBot**.      
 
 1. In the **Startup.cs** class, focus your attention on the `ConfigureServices` method which is used to add services to the bot. Review the contents carefully, noting what is built in for you.
@@ -334,11 +338,17 @@ Middleware is simply a class or set of classes that sit between the adapter and 
 
 The SDK allows you to write your own middleware or add reusable components of middleware created by others. Every activity coming in or out of your bot flows through your middleware. We'll get deeper into this later in the lab, but for now, it's important to understand that every activity flows through your middleware, because it is located in the `ConfigureServices` method that gets called at run time (which runs in between every message being sent by a user and `OnMessageActivityAsync`).
 
-5. Add a new folder called **Middleware**
+5. Add a new folder called **Middleware**. Right-Click on the PictureBot project and Go-to **Add** and then click on **New Folder**.
 
-6. Right-click on the **Middleware** folder and select **Add>Existing Item**.
+   ![](./newFolder.png)
 
-7. Navigate to **C:\AllFiles\AI-100-Design-Implement-Azure-AISol-master\Lab3-Basic_Filter_Bot\code\Middleware**, select all three files, and select **Add**
+6. Right-click on the **Middleware** folder and select **Add -> Existing Item**.
+
+   ![](./existing_item.png)
+
+7. Navigate to **C:\AllFiles\AI-100-Design-Implement-Azure-AISol-master\Lab3-Basic_Filter_Bot\code\Middleware**, select all three files, and select **Add**.
+
+   ![](./36.png)
 
 8. Add the following variables to your **Startup** class:
 
@@ -482,7 +492,11 @@ You should see an error (red squiggly) beneath some of the terms. But before fix
 
 Now back to the errors you're seeing. You've said you're going to store this information, but you haven't yet specified where or how. We have to update "PictureState.cs" and "PictureBotAccessor.cs" to have and access the information we want to store.
 
-12. Right-click the project and select **Add->Class**, select a Class file and name it **PictureState**
+12. Right-click the project and select **Add->Class**, select a Class file and name it **PictureState**.
+
+   ![](./41.png)
+   
+   ![](./42.png)
 
 13. Replace the existing code in **PictureState.cs** with the following code
 
