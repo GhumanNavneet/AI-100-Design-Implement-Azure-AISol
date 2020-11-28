@@ -164,11 +164,11 @@ A bot created using the Microsoft Bot Framework can be hosted at any publicly-ac
 
    ![](./23.png)
    
-1. Type **Microsoft.Bot.Builder.Azure.Blobs** and install the package as shown in the image.
+1. Type **Microsoft.Bot.Builder.Azure.Blobs** and install the package as shown in the image. Go to **Browse**, search for the package in toolbar and then install by selecting the latest version
 
    ![](./24.png)
    
-1. Please follow the above steps for the remaining packages.
+1. Please follow the above step 16 for installing remaining packages.
 
 1. Navigate to **Startup.cs** file and add the below line of code in `namespace PictureBot`:
 
