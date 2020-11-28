@@ -87,7 +87,7 @@ A bot created using the Microsoft Bot Framework can be hosted at any publicly-ac
 
    ![](./14.png)
 
-22. Select **Overview**, record the application id into notepad or similar for later use in the lab(s).
+22. Select **Overview** from the same window please don't press back, record the **Application ID** into notepad or similar for later use in the lab(s).
 
    ![](./15_1.png)
 
@@ -148,7 +148,7 @@ A bot created using the Microsoft Bot Framework can be hosted at any publicly-ac
     
     ![](./22.png)
 
-1. Right-click the project, select **Manage Nuget Packagaes**
+1. Right-click the project, select **Manage Nuget Packages**
 
 1. Select the **Browse** tab, and install the following packages, ensure that you are using latest version:
 
@@ -164,7 +164,7 @@ A bot created using the Microsoft Bot Framework can be hosted at any publicly-ac
 
    ![](./23.png)
    
-1. Type **Microsoft.Bot.Builder.Azure.Blobs** and intall the package as shown in the image.
+1. Type **Microsoft.Bot.Builder.Azure.Blobs** and install the package as shown in the image.
 
    ![](./24.png)
    
