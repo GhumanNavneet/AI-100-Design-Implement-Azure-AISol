@@ -69,7 +69,9 @@ var blobContainer = Configuration.GetSection("BlobStorageContainer")?.Value;
 IStorage dataStore = new Microsoft.Bot.Builder.Azure.AzureBlobStorage(blobConnectionString, blobContainer);
 ```
 
-3. Switch to the Azure Portal, navigate to your blob storage account
+3. Switch to the Azure Portal, navigate to your blob storage account.
+
+   ![](./4.png)
 
 4. From the **Overview** tab, click **Containers**
 
@@ -77,7 +79,11 @@ IStorage dataStore = new Microsoft.Bot.Builder.Azure.AzureBlobStorage(blobConnec
 
 - For the name, type **chatlog**, click **OK**
 
-6. If you haven't already done so, click **Access keys** and record your connection string
+   ![](./5.png)
+   
+6. If you haven't already done so, click **Access keys** and record your connection string.
+
+   ![](./6.png)
 
 7. Open the **appsettings.json** and add your blob connection string details:
 
