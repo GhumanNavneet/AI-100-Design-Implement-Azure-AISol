@@ -836,7 +836,9 @@ namespace PictureBot.Responses
 
 Due to time limitations, we will not be walking through creating all the models. They are straightforward, but we recommend taking some time to review the code within after you've added them. 
 
-8. Right-click on the **Models** folder and select **Add>Existing Item**.
+8. Right-click on the **Models** folder and select **Add -> Existing Item**.
+
+   ![](./43.png)
 
 9. Navigate to **C:\AllFiles\AI-100-Design-Implement-Azure-AISol-master\Lab3-Basic_Filter_Bot\code\Models**, select all three files, and select **Add**.
 
