@@ -2,7 +2,7 @@
 
 In this lab we are going to integrate language detection ability of cognitive services into our bot.
 
-## Lab 3.0:Creating a LUIS APP
+## Lab 3.0 : Creating a LUIS APP
 
 1. Navigate to [https://www.luis.ai](https://www.luis.ai). We will create a new LUIS app to support our bot.
 
