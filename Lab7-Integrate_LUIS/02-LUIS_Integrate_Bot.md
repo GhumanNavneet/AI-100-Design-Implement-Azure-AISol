@@ -95,55 +95,43 @@ We will have to update our bot in order to use LUIS.  We can do this by modifyin
 
 ### Adding LUIS to Startup.cs
 
-1. If not already open, open your **PictureBot** solution in Visual Studio
+1. Open **Startup.cs** and locate the `ConfigureServices` method. We'll add LUIS here by adding an additional service for LUIS after creating and registering the state accessors.
 
-> **NOTE** You can also start with the **C:\AllFiles\AI-100-Design-Implement-Azure-AISol-master\Lab7-Integrate_LUIS\code\Starter\PictureBotPictureBot.sln** solution if you did not start from Lab 1.
-> Be sure to replace all the app settings values
+    Below:
 
-  ![](./pics/1.png)
-  
-  ![](./pics/2.png)
-  
-1. Open **Startup.cs** and locate the `ConfigureServices` method. We'll add LUIS here by adding an additional service for LUIS after creating and registering the state accessors. You may notice a debugger placed somewhere around line 61, Please remove it by clicking on the red button on the particular line.
-
-  ![](./pics/3.png)
-
-Below:
-
-```csharp
-services.AddSingleton((Func<IServiceProvider, PictureBotAccessors>)(sp =>
-{
-    .
-    .
-    .
-    return accessors;
-});
-```
-
-Add: (you will have to add the below code after line 138)
-
-```csharp
-// Create and register a LUIS recognizer.
-services.AddSingleton(sp =>
-{
-    var luisAppId = Configuration.GetSection("luisAppId")?.Value;
-    var luisAppKey = Configuration.GetSection("luisAppKey")?.Value;
-    var luisEndPoint = Configuration.GetSection("luisEndPoint")?.Value;
-
-    // Get LUIS information
-    var luisApp = new LuisApplication(luisAppId, luisAppKey, luisEndPoint);
-
-    // Specify LUIS options. These may vary for your bot.
-    var luisPredictionOptions = new LuisPredictionOptions
+    ```csharp
+    services.AddSingleton((Func<IServiceProvider, PictureBotAccessors>)(sp =>
     {
-        IncludeAllIntents = true,
-    };
+        .
+        .
+        .
+        return accessors;
+    });
+    ```
 
-    // Create the recognizer
-    var recognizer = new LuisRecognizer(luisApp, luisPredictionOptions, true, null);
-    return recognizer;
-});
-```
+    Add:
+
+    ```csharp
+    // Create and register a LUIS recognizer.
+    services.AddSingleton(sp =>
+    {
+        var luisApplication = new LuisApplication(
+            Configuration.GetSection("luisAppId")?.Value,
+            Configuration.GetSection("luisAppKey")?.Value,
+            Configuration.GetSection("luisEndPoint")?.Value);
+            // Set the recognizer options depending on which endpoint version you want to use.
+            // More details can be found in https://docs.microsoft.com/en-gb/azure/cognitive-services/luis/luis-migration-api-v3
+            var recognizerOptions = new LuisRecognizerOptionsV3(luisApplication)
+            {
+                PredictionOptions = new Microsoft.Bot.Builder.AI.LuisV3.LuisPredictionOptions
+                {
+                    IncludeAllIntents = true,
+                }
+            };
+        return new LuisRecognizer(recognizerOptions);
+    });
+    ```
+
 
  ![](./pics/4_1.png)
 
