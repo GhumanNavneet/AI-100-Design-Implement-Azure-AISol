@@ -95,6 +95,8 @@ We will have to update our bot in order to use LUIS.  We can do this by modifyin
 
 ### Adding LUIS to Startup.cs
 
+1. Open the PictureBot solution from C:\AllFiles\AI-100-Design-Implement-Azure-AISol-master\Lab7-Integrate_LUIS\code\Starter\PictureBot\PictureBot.sln
+
 1. Open **Startup.cs** and locate the `ConfigureServices` method. We'll add LUIS here by adding an additional service for LUIS after creating and registering the state accessors.
 
     Below:
