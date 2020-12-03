@@ -268,15 +268,6 @@ Another thing to note is that after every response that called LUIS, we're addin
 
 ## Lab 2.4: Testing natural speech phrases
 
-1.Right-click the project, select **Manage Nuget Packagaes** in VSTS
-
-  Select the Browse tab, and install the following packages, ensure that you are using version 4.6.3:
-
-   * Microsoft.Bot.Builder.Azure
-   * Microsoft.Bot.Builder.AI.Luis
-   * Microsoft.Bot.Builder.Dialogs
-   * Microsoft.Azure.Search (version, 10.1.0 or later)
-
 1. Press **F5** to run the app. The localhost will pop-up in the default browser and copy the endpoint URL as shown in the below image.
 
    ![](./pics/bot_1_1.png)
