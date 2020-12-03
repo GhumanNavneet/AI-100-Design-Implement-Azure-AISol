@@ -292,9 +292,15 @@ Another thing to note is that after every response that called LUIS, we're addin
 
    ![](./pics/bot_4.png)
    
-1. The bot will appear and you can search for the utterences.
+1. The bot will appear and you can search for the utterences. First the chat could be blank, please type something for eg. HI and send.
 
    ![](./pics/bot_5.png)
+
+1. Try sending the bots different ways of searching pictures. What happens when you say "send me pictures of water" or "show me dog pics"? Try some other ways of asking for, sharing and ordering pictures.
+
+1. If you send "show me dog pics".Then the output will be like the images below :-
+
+
 
 If you have extra time, see if there are things LUIS isn't picking up on that you expected it to. Maybe now is a good time to go to luis.ai, [review your endpoint utterances](https://docs.microsoft.com/en-us/azure/cognitive-services/LUIS/label-suggested-utterances), and retrain/republish your model.
 
