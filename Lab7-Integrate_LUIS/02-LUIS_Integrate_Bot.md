@@ -16,42 +16,80 @@ We will have to update our bot in order to use LUIS.  We can do this by modifyin
 2. In the portal, navigate to your resource group, then select **+Add** and search for **bot**.
 
    ![Bot template area is highlighted and the language and bot type is selected.](../images/rg.jpg 'Select the bot type')
+   
+   ![](./1.png)
 
 3. Select **Web App Bot**, and select **Create**.
 
-4. Provide the follwing details and click on **Create**
+   ![](./2.png)
 
-      * For the name, you'll have to create a unique identifier. We recommend using something along the lines of PictureBot[i][n] where [i] is your initials and [n] is a number (e.g. mine would be PictureBotamt6).
+4. For the name, you'll have to create a unique identifier. We recommend using something along the lines of PictureBot[i][n] where [i] is your initials and [n] is a number (e.g. mine would be PictureBotamt6).
 
-      * Select a region and for pricing tier, select **F0 (10K Premium Message)**.
+5. Select a region
 
-      * Select the Bot template area and Select **C#**, then select **Echo Bot**, later we will update it to our our PictureBot.
+6. For pricing tier, select **F0 (10K Premium Message)**.
 
-        ![Bot template area is highlighted and the language and bot type is selected.](../images/lab02-createbot.png 'Select the bot type')
+7. Select the Bot template area
 
-      * Select **OK**, make sure that **Echo Bot** is displayed.
+   ![](./4.png)
 
-      * Configure a new App service plan (put it in the same location as your bot)
+8. Select **C#**, then select **Echo Bot**, later we will update it to our our PictureBot.
 
-      * You can choose to turn Application Insights on or off.
+   ![](./5.png)
 
-      * **Do not** change or select on **Auto create App ID and password**, we will get to that later.
+9. Select **OK**, make sure that **Echo Bot** is displayed.
 
-5. When it's deployed, navigate to the new `Azure Web App Bot` Resource, select **Settings** under **Bot Management**
+10. Configure a new App service plan (put it in the same location as your bot)
 
-6. Select the **Manage** link for the **Microsoft App ID**
+   ![](./6.png)
+   
+   ![](./7.png)
+   
+   ![](./8.png)
 
-   ![Select the Manage link](../images/ManageBot.png)
+11. Turn Application Insights **off**.
 
-7. Select **New client secret**., give name as **PictureBot**. For expires select **Never** and then select **Add**.
+12. **Do not** change or select on **Auto create App ID and password**, we will get to that later.
 
-8. Record the secret into notepad and select **Overview**, also record the `Application Id` into notepad.
+13. Select **Create**
 
-9. Navigate back to the **web app bot** resource, under **Bot management**, select the **Test in Web Chat** tab
+   ![](./9.png)
 
-10. Once it starts, explore what it is capable of doing.  As you will see, it only echos back your message.
+14. When it's deployed, navigate to the new Azure Web App Bot Resource.
 
-    ![The basic echo bot response](../images/EchoBot.png)
+   ![](./10.png)
+
+15. Under **Bot Management**, select **Settings**
+
+16. Select the **Manage** link for the **Microsoft App ID**
+
+   ![](./11.png)
+
+17. Select **New client secret**
+
+   ![](./12.png)
+
+18. For the name, type **PictureBot**
+
+19. For the expires, select **Never**
+
+20. Select **Add**
+
+   ![](./13.png)
+
+21. Record the secret into notepad or similar for later use in the lab(s).
+
+   ![](./14.png)
+
+22. Select **Overview** from the same window please don't press back, record the **Application ID** into notepad or similar for later use in the lab(s).
+
+   ![](./15_1.png)
+
+23. Navigate back to the **web app bot** resource, under **Bot management**, select the **Test in Web Chat** tab
+
+24. Once it starts, explore what it is capable of doing.  As you will see, it only echos back your message.
+
+   ![](./16.png)
 
 ## Lab 2.2: Adding natural language understanding
 
