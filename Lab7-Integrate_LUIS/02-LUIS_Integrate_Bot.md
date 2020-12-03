@@ -154,7 +154,7 @@ We will have to update our bot in order to use LUIS.  We can do this by modifyin
 
    ![](./pics/7.png)
    
-1. After editing the **appsettings.json**, it will look like the below image. Leave Microsoft AppID and Password Blank.
+1. After editing the **appsettings.json**, it will look like the below image. Leave MicrosoftAppID and MicrosoftAppPassword Blank.
 
    ![](./pics/6.png)
    
