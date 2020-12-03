@@ -53,7 +53,7 @@ A bot created using the Microsoft Bot Framework can be hosted at any publicly-ac
    
    ![](./8.png)
 
-11. You can choose to turn Application Insights on or off.
+11. Turn Application Insights **off**.
 
 12. **Do not** change or select on **Auto create App ID and password**, we will get to that later.
 
