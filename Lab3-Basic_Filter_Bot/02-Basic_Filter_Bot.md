@@ -309,6 +309,7 @@ For example, if I say "Hello bot" and the bot responds "Hi, how are you?" that i
 
       using Microsoft.Bot.Builder.AI.Luis;
       using Microsoft.Bot.Builder.Dialogs;
+      using Microsoft.Bot.Builder.Azure.Blobs;
    ```
 
    We won't use all of the above namespaces just yet, but can you guess when we might?
