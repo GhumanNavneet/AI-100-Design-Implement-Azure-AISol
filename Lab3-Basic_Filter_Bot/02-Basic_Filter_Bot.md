@@ -856,55 +856,30 @@ middleware.Add(new RegExpRecognizerMiddleware()
 
 2. You may notice that the `options.State` has been deprecated.  Let's migrate to the newest method:
 
-3. Remove the following code:
+3. Add following code in the bottom of the `ConfigureServices`
 
-```csharp
-var conversationState = new ConversationState(dataStore);
+    ```csharp
+    // Create the User state.
+    services.AddSingleton<UserState>(sp => {
+        var dataStore = sp.GetRequiredService<IStorage>();
+            return new UserState(dataStore);
+    });
 
-options.State.Add(conversationState);
-```
+    // Create the Conversation state.
+    services.AddSingleton<ConversationState>(sp =>
+    {
+        var dataStore = sp.GetRequiredService<IStorage>();
+        return new ConversationState(dataStore);
+    });
 
-4. Replace it with
+    // Create the IStorage.
+    services.AddSingleton<IStorage, MemoryStorage>(sp =>
+    {
+        return new MemoryStorage();
+    });
+    ```
 
-```csharp
-var userState = new UserState(dataStore);
-var conversationState = new ConversationState(dataStore);
-
-// Create the User state.
-services.AddSingleton<UserState>(userState);
-
-// Create the Conversation state.
-services.AddSingleton<ConversationState>(conversationState);
-```
-
-5. Also replace the `ConfigureServices` code to now pull from the dependency injection version:
-
-```csharp
-var conversationState = options.State.OfType<ConversationState>().FirstOrDefault();
-if (conversationState == null)
-{
-    throw new InvalidOperationException("ConversationState must be defined and added before adding conversation-scoped state accessors.");
-}
-```
-
-6. Replace it with
-
-```csharp
-var conversationState = services.BuildServiceProvider().GetService<ConversationState>();
-
-if (conversationState == null)
-{
-    throw new InvalidOperationException("ConversationState must be defined and added before adding conversation-scoped state accessors.");
-}
-```
-7.  Add the following line of code within `ConfigureServices` method.
-
-```
-services.AddMvc(option => option.EnableEndpointRouting = false);
-```
-    >**Note**: You can add the above line of code anywhere in the **ConfigureServices** method
-
-Without adding LUIS, our bot is really only going to pick up on a few variations, but it should capture a good bit of messages, if the users are using the bot for searching and sharing and ordering pictures.
+1. Without adding LUIS, our bot is really only going to pick up on a few variations, but it should capture a good bit of messages, if the users are using the bot for searching and sharing and ordering pictures.
 
 > Aside: One might argue that the user shouldn't have to type "help" to get a menu of clear options on what the bot can do; rather, this should be the default experience on first contact with the bot.  **Discoverability** is one of the biggest challenges for bots - letting the users know what the bot is capable of doing.  Good [bot design principles](https://docs.microsoft.com/en-us/bot-framework/bot-design-principles) can help.
 
