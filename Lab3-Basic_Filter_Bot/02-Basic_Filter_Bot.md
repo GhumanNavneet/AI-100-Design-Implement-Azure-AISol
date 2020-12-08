@@ -397,15 +397,20 @@ services.AddBot<PictureBot.Bots.PictureBot>(options =>
 10. Replace the **Configure** method with the following code:
 
 ```csharp
-public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILoggerFactory loggerFactory)
+public void Configure(IApplicationBuilder app, ILoggerFactory loggerFactory)
 {
     _loggerFactory = loggerFactory;
 
     app.UseDefaultFiles()
-        .UseStaticFiles()
-        .UseBotFramework();
-
-    app.UseMvc();
+                .UseBotFramework()
+                .UseStaticFiles()
+                .UseWebSockets()
+                .UseRouting()
+                .UseAuthorization()
+                .UseEndpoints(endpoints =>
+                {
+                    endpoints.MapControllers();
+                });
 }
 ```
 
