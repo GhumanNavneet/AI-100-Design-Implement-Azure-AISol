@@ -9,88 +9,6 @@ We will have to update our bot in order to use LUIS.  We can do this by modifyin
 
 > NOTE: If you intend to use the code in the Finished folder, you MUST replace the app specific information with your own app IDs and endpoints.
 
-## Lab 2.1: Create an Azure Web App Bot
-
-1. Navigate to the `Azure portal` from virtual machine.
-
-2. In the portal, navigate to your resource group, then select **+Add** and search for **bot**.
-
-   ![Bot template area is highlighted and the language and bot type is selected.](../images/rg.jpg 'Select the bot type')
-   
-   ![](./1.png)
-
-3. Select **Web App Bot**, and select **Create**.
-
-   ![](./2.png)
-
-4. For the name, you'll have to create a unique identifier. We recommend using something along the lines of PictureBot[i][n] where [i] is your initials and [n] is a number (e.g. mine would be PictureBotamt6).
-
-5. Select a region
-
-6. For pricing tier, select **F0 (10K Premium Message)**.
-
-7. Select the Bot template area
-
-   ![](./4.png)
-
-8. Select **C#**, then select **Echo Bot**, later we will update it to our our PictureBot.
-
-   ![](./5.png)
-
-9. Select **OK**, make sure that **Echo Bot** is displayed.
-
-10. Configure a new App service plan (put it in the same location as your bot)
-
-   ![](./6.png)
-   
-   ![](./7.png)
-   
-   ![](./8.png)
-
-11. Turn Application Insights **off**.
-
-12. **Do not** change or select on **Auto create App ID and password**, we will get to that later.
-
-13. Select **Create**
-
-   ![](./9.png)
-
-14. When it's deployed, navigate to the new Azure Web App Bot Resource.
-
-   ![](./10.png)
-
-15. Under **Bot Management**, select **Settings**
-
-16. Select the **Manage** link for the **Microsoft App ID**
-
-   ![](./11.png)
-
-17. Select **New client secret**
-
-   ![](./12.png)
-
-18. For the name, type **PictureBot**
-
-19. For the expires, select **Never**
-
-20. Select **Add**
-
-   ![](./13.png)
-
-21. Record the secret into notepad or similar for later use in the lab(s).
-
-   ![](./14.png)
-
-22. Select **Overview** from the same window please don't press back, record the **Application ID** into notepad or similar for later use in the lab(s).
-
-   ![](./15_1.png)
-
-23. Navigate back to the **web app bot** resource, under **Bot management**, select the **Test in Web Chat** tab
-
-24. Once it starts, explore what it is capable of doing.  As you will see, it only echos back your message.
-
-   ![](./16.png)
-
 ## Lab 2.2: Adding natural language understanding
 
 ### Adding LUIS to Startup.cs
@@ -274,11 +192,7 @@ Another thing to note is that after every response that called LUIS, we're addin
 
 1. Switch to your Bot Emulator. Try sending the bots different ways of searching pictures. What happens when you say "send me pictures of water" or "show me dog pics"? Try some other ways of asking for, sharing and ordering pictures. For this follow the below instructions.
 
-1. Open the bot emulator from the desktop. **Note**:- it will ask for update , please update the bot emulator.
-
-   ![](./pics/bot_1.png)
-   
-   ![](./pics/bot_1_2.png)
+1. Open the bot emulator from the desktop.
 
 1. Click on **Create a new bot configuration**.
 
