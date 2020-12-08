@@ -54,85 +54,116 @@ In this lab we are going to integrate language detection ability of cognitive se
 
 4. Search for **Microsoft.Azure.CognitiveServices.Language.TextAnalytics**, select it then select **Install**, then select **I Accept**
 
-5. Open the **Startup.cs** file, Check the following using statements:
+5. Open the **Startup.cs** file, check the following using statements:
 
-```csharp
-using Microsoft.Azure.CognitiveServices.Language.TextAnalytics;
-using Microsoft.Azure.CognitiveServices.Language.TextAnalytics.Models;
-using Microsoft.Azure.CognitiveServices.Language.LUIS.Runtime;
-```
+    ```csharp
+    using Azure.AI.TextAnalytics;
+    using Azure;
+    ```
 
-6. Check the following code to the **ConfigureServices** method:
+6. Check the following code in the **ConfigureServices** method:
 
-```csharp
-services.AddSingleton(sp =>
-{
-    string cogsBaseUrl = Configuration.GetSection("cogsBaseUrl")?.Value;
-    string cogsKey = Configuration.GetSection("cogsKey")?.Value;
-
-    var credentials = new ApiKeyServiceClientCredentials(cogsKey);
-    TextAnalyticsClient client = new TextAnalyticsClient(credentials)
+    ```csharp
+    services.AddSingleton<TextAnalyticsClient>(sp =>
     {
-        Endpoint = cogsBaseUrl
-    };
+        Uri cogsBaseUrl = new Uri(Configuration.GetSection("cogsBaseUrl")?.Value);
+        string cogsKey = Configuration.GetSection("cogsKey")?.Value;
 
-    return client;
-});
-```
+        var credentials = new AzureKeyCredential(cogsKey);
+        return new TextAnalyticsClient(cogsBaseUrl, credentials);
+    });
+    ```
 
-7. Open the **PictureBot.cs** file, check the following using statements:
+7. Open the **PictureBot.cs** file, Check the following using statements:
 
-```csharp
-using Microsoft.Azure.CognitiveServices.Language.TextAnalytics;
-using Microsoft.Azure.CognitiveServices.Language.TextAnalytics.Models;
-```
+    ```csharp
+    using Azure.AI.TextAnalytics;
+    ```
 
-8. check the following class variable:
+8. Check the following class variable:
 
-```csharp
-private TextAnalyticsClient _textAnalyticsClient;
-```
+    ```csharp
+    private TextAnalyticsClient _textAnalyticsClient;
+    ```
 
-9. Check whether the constructor includes the new TextAnalyticsClient:
+9. Check the constructor if it includes the new `TextAnalyticsClient`:
 
-```csharp
-public PictureBot(PictureBotAccessors accessors, ILoggerFactory loggerFactory,LuisRecognizer recognizer, TextAnalyticsClient analyticsClient)
-```
+    ```csharp
+    public PictureBot(PictureBotAccessors accessors, LuisRecognizer recognizer, TextAnalyticsClient analyticsClient)
+    ```
 
-10. Inside the constructor, check the class variable is initialized:
+10. Inside the constructor, check if the class variable initialized:
 
-```csharp
-_textAnalyticsClient = analyticsClient;
-```
+    ```csharp
+    _textAnalyticsClient = analyticsClient;
+    ```
 
 11. Navigate to the **OnTurnAsync** method and find the following line of code:
 
-```csharp
-var utterance = turnContext.Activity.Text;
-var state = await _accessors.PictureState.GetAsync(turnContext, () => new PictureState());
-state.UtteranceList.Add(utterance);
-await _accessors.ConversationState.SaveChangesAsync(turnContext);
-```
+    ```csharp
+    var utterance = turnContext.Activity.Text;
+    var state = await _accessors.PictureState.GetAsync(turnContext, () => new PictureState());
+    state.UtteranceList.Add(utterance);
+    await _accessors.ConversationState.SaveChangesAsync(turnContext);
+    ```
 
-12. Check the following line of code is present after it
+12. Check if the following line of code after it
 
-```csharp
-//Check the language
-var result = _textAnalyticsClient.DetectLanguage(turnContext.Activity.Text, "us");
+    ```csharp
+    //Check the language
+        DetectedLanguage detectedLanguage = _textAnalyticsClient.DetectLanguage(turnContext.Activity.Text);
+        switch (detectedLanguage.Name)
+        {
+            case "English":
+                break;
+            default:
+                //throw error
+                await turnContext.SendActivityAsync($"I'm sorry, I can only understand English. [{detectedLanguage.Name}]");
+                break;
+        }
+    ```
 
-switch (result.DetectedLanguages[0].Name)
-{
-    case "English":
-        break;
-    default:
-        //throw error
-        await turnContext.SendActivityAsync($"I'm sorry, I can only understand English. [{result.DetectedLanguages[0].Name}]");
-        return;
-        break;
-}
-```
+13. Everyting you have in the method after `switch` ends move to the `case "English"`. Finally your method should looks like following:
 
-13. Open the **appsettings.json** file and ensure that your cognitive services settings and LUIS app settings are entered:
+    ```csharp
+    public override async Task OnTurnAsync(ITurnContext turnContext, CancellationToken cancellationToken = default(CancellationToken))
+    {
+        if (turnContext.Activity.Type is "message")
+        {
+            var utterance = turnContext.Activity.Text;
+            var state = await _accessors.PictureState.GetAsync(turnContext,() => new PictureState());
+            state.UtteranceList.Add(utterance);
+            await _accessors.ConversationState.SaveChangesAsync(turnContext);
+
+            //Check the language
+            DetectedLanguage detectedLanguage = _textAnalyticsClient.DetectLanguage(turnContext.Activity.Text);
+            switch (detectedLanguage.Name)
+            {
+                    case "English":
+                        // Establish dialog context from the conversation state.
+                        var dc = await _dialogs.CreateContextAsync(turnContext);
+                        // Continue any current dialog.
+                        var results = await dc.ContinueDialogAsync(cancellationToken);
+
+                        // Every turn sends a response, so if no response was sent,
+                        // then there no dialog is currently active.
+                        if (!turnContext.Responded)
+                        {
+                            // Start the main dialog
+                            await dc.BeginDialogAsync("mainDialog", null, cancellationToken);
+                        }
+                        break;
+                    default:
+                        //throw error
+                        await turnContext.SendActivityAsync($"I'm sorry, I can only understand English. [{detectedLanguage.Name}]");
+                        break;
+            }
+        }
+    }
+    ```
+
+
+14. Open the **appsettings.json** file and ensure that your cognitive services settings and LUIS app settings are entered:
 
 ```csharp
 "cogsBaseUrl": "",
@@ -144,7 +175,7 @@ switch (result.DetectedLanguages[0].Name)
 
 `Note: For cogsBaseURL and cogsKey you will get in your azure environment and use the values of LUIS app you copied earlier to notepad`
 
-14. Also, add following value that you collect in previous Labs.
+15. Also, add following value that you collect in previous Labs.
 
 ```
   "MicrosoftAppId": "YourAppID",
@@ -154,9 +185,9 @@ switch (result.DetectedLanguages[0].Name)
 
 ```
 
-15. Press **F5** to start your bot
+16. Press **F5** to start your bot
 
-16. Using the Bot Emulator, send in a few phrases and see what happens:
+17. Using the Bot Emulator, send in a few phrases and see what happens:
 
 - Como Estes?
 - Bon Jour!
