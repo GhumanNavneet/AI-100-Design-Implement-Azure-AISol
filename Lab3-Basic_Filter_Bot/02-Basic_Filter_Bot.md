@@ -885,98 +885,134 @@ middleware.Add(new RegExpRecognizerMiddleware()
 
 ## Lab 1.5: Running the bot
 
-### MainDialog, Again
-
 Let's get down to business. We need to fill out MainDialog within PictureBot.cs so that our bot can react to what users say they want to do.  Based on our results from Regex, we need to direct the conversation in the right direction. Read the code carefully to confirm you understand what it's doing.
 
-1. In **PictureBot.cs**, add the following by pasting in the following method code:
+1. In **PictureBot.cs**, add following namespaces to the top of the file
 
-```csharp
-// If we haven't greeted a user yet, we want to do that first, but for the rest of the
-// conversation we want to remember that we've already greeted them.
-private async Task<DialogTurnResult> GreetingAsync(WaterfallStepContext stepContext, CancellationToken cancellationToken)
-{
-    // Get the state for the current step in the conversation
-    var state = await _accessors.PictureState.GetAsync(stepContext.Context, () => new PictureState());
+    ```csharp
+    using Microsoft.Bot.Schema;
+    using Microsoft.PictureBot;
+    using PictureBot.Responses;
+    ```
 
-    // If we haven't greeted the user
-    if (state.Greeted == "not greeted")
+1. Add following line to the top of the class.
+
+    ```csharp
+    private readonly PictureBotAccessors _accessors;
+    ```
+
+1. Add the following method by pasting code:
+
+    ```csharp
+    // If we haven't greeted a user yet, we want to do that first, but for the rest of the
+    // conversation we want to remember that we've already greeted them.
+    private async Task<DialogTurnResult> GreetingAsync(WaterfallStepContext stepContext, CancellationToken cancellationToken)
     {
-        // Greet the user
-        await MainResponses.ReplyWithGreeting(stepContext.Context);
-        // Update the GreetedState to greeted
-        state.Greeted = "greeted";
-        // Save the new greeted state into the conversation state
-        // This is to ensure in future turns we do not greet the user again
-        await _accessors.ConversationState.SaveChangesAsync(stepContext.Context);
-        // Ask the user what they want to do next
-        await MainResponses.ReplyWithHelp(stepContext.Context);
-        // Since we aren't explicitly prompting the user in this step, we'll end the dialog
-        // When the user replies, since state is maintained, the else clause will move them
-        // to the next waterfall step
-        return await stepContext.EndDialogAsync();
-    }
-    else // We've already greeted the user
-    {
-        // Move to the next waterfall step, which is MainMenuAsync
-        return await stepContext.NextAsync();
-    }
+        // Get the state for the current step in the conversation
+        var state = await _accessors.PictureState.GetAsync(stepContext.Context, () => new PictureState());
 
-}
-
-// This step routes the user to different dialogs
-// In this case, there's only one other dialog, so it is more simple,
-// but in more complex scenarios you can go off to other dialogs in a similar
-public async Task<DialogTurnResult> MainMenuAsync(WaterfallStepContext stepContext, CancellationToken cancellationToken)
-{
-    // Check if we are currently processing a user's search
-    var state = await _accessors.PictureState.GetAsync(stepContext.Context);
-
-    // If Regex picks up on anything, store it
-    var recognizedIntents = stepContext.Context.TurnState.Get<IRecognizedIntents>();
-    // Based on the recognized intent, direct the conversation
-    switch (recognizedIntents.TopIntent?.Name)
-    {
-        case "search":
-            // switch to the search dialog
-            return await stepContext.BeginDialogAsync("searchDialog", null, cancellationToken);
-        case "share":
-            // respond that you're sharing the photo
-            await MainResponses.ReplyWithShareConfirmation(stepContext.Context);
-            return await stepContext.EndDialogAsync();
-        case "order":
-            // respond that you're ordering
-            await MainResponses.ReplyWithOrderConfirmation(stepContext.Context);
-            return await stepContext.EndDialogAsync();
-        case "help":
-            // show help
+        // If we haven't greeted the user
+        if (state.Greeted == "not greeted")
+        {
+            // Greet the user
+            await MainResponses.ReplyWithGreeting(stepContext.Context);
+            // Update the GreetedState to greeted
+            state.Greeted = "greeted";
+            // Save the new greeted state into the conversation state
+            // This is to ensure in future turns we do not greet the user again
+            await _accessors.ConversationState.SaveChangesAsync(stepContext.Context);
+            // Ask the user what they want to do next
             await MainResponses.ReplyWithHelp(stepContext.Context);
+            // Since we aren't explicitly prompting the user in this step, we'll end the dialog
+            // When the user replies, since state is maintained, the else clause will move them
+            // to the next waterfall step
             return await stepContext.EndDialogAsync();
-        default:
-            {
-                await MainResponses.ReplyWithConfused(stepContext.Context);
-                return await stepContext.EndDialogAsync();
-            }
+        }
+        else // We've already greeted the user
+        {
+            // Move to the next waterfall step, which is MainMenuAsync
+            return await stepContext.NextAsync();
+        }
+
     }
-}
-```
-    >**Note**: You can add the above lines of code after **public override async Task OnTurnAsync** method in the **PictureBot** class
 
-2. Press **F5** to run the bot.
+    // This step routes the user to different dialogs
+    // In this case, there's only one other dialog, so it is more simple,
+    // but in more complex scenarios you can go off to other dialogs in a similar
+    public async Task<DialogTurnResult> MainMenuAsync(WaterfallStepContext stepContext, CancellationToken cancellationToken)
+    {
+        // Check if we are currently processing a user's search
+        var state = await _accessors.PictureState.GetAsync(stepContext.Context);
 
-3. Using the bot emulator, test the bot by sending some commands:
+        // If Regex picks up on anything, store it
+        var recognizedIntents = stepContext.Context.TurnState.Get<IRecognizedIntents>();
+        // Based on the recognized intent, direct the conversation
+        switch (recognizedIntents.TopIntent?.Name)
+        {
+            case "search":
+                // switch to the search dialog
+                return await stepContext.BeginDialogAsync("searchDialog", null, cancellationToken);
+            case "share":
+                // respond that you're sharing the photo
+                await MainResponses.ReplyWithShareConfirmation(stepContext.Context);
+                return await stepContext.EndDialogAsync();
+            case "order":
+                // respond that you're ordering
+                await MainResponses.ReplyWithOrderConfirmation(stepContext.Context);
+                return await stepContext.EndDialogAsync();
+            case "help":
+                // show help
+                await MainResponses.ReplyWithHelp(stepContext.Context);
+                return await stepContext.EndDialogAsync();
+            default:
+                {
+                    await MainResponses.ReplyWithConfused(stepContext.Context);
+                    return await stepContext.EndDialogAsync();
+                }
+        }
+    }
+    ```
+
+1. Find function `OnMessageActivityAsync` and replace with new function `OnTurnAsync`
+
+
+    ```csharp
+    public override async Task OnTurnAsync(ITurnContext turnContext, CancellationToken cancellationToken = default(CancellationToken))
+    {
+        if (turnContext.Activity.Type is "message")
+        {
+            // Establish dialog context from the conversation state.
+            var dc = await _dialogs.CreateContextAsync(turnContext);
+            // Continue any current dialog.
+            var results = await dc.ContinueDialogAsync(cancellationToken);
+
+            // Every turn sends a response, so if no response was sent,
+            // then there no dialog is currently active.
+            if (!turnContext.Responded)
+            {
+                // Start the main dialog
+                await dc.BeginDialogAsync("mainDialog", null, cancellationToken);
+            }  
+        }          
+    }
+    ```
+
+
+1. Press **F5** to run the bot.
+
+1. Using the bot emulator, test the bot by sending some commands:
 
     * help
     * share pics
     * order pics
     * search pics
-  
-     > **Note** If you get a 500 error in your bot, you can place a break point in the **Startup.cs** file inside the **OnTurnError** delegate method.  The most common error is a mismatch of the AppId and AppSecret.
+    
+    > **Note** If you get a 500 error in your bot, you can place a break point in the **Startup.cs** file inside the **OnTurnError** delegate method.  The most common error is a mismatch of the AppId and AppSecret.
 
-4. If the only thing that didn't give you the expected result was "search pics", everything is working how you configured it. "search pics" failing is the expected behavior at this point in the lab, but why? Have an answer before you move on!
+1. If the only thing that didn't give you the expected result was "search pics", everything is working how you configured it. "search pics" failing is the expected behavior at this point in the lab, but why? Have an answer before you move on!
 
->Hint: Use break points to trace matching to case "search", starting from **PictureBot.cs**.
->Get stuck or broken? You can find the solution for the lab up until this point under [resources/code/Finished](./code/Finished). The readme file within the solution (once you open it) will tell you what keys you need to add in order to run the solution. We recommend using this as a reference, not as a solution to run, but if you choose to run it, be sure to add the necessary keys for your enviroment.
+    >Hint: Use break points to trace matching to case "search", starting from **PictureBot.cs**.
+    >Get stuck or broken? You can find the solution for the lab up until this point under [resources/code/Finished](./code/Finished). The readme file within the solution (once you open it) will tell you what keys you need to add in order to run the solution. We recommend using this as a reference, not as a solution to run, but if you choose to run it, be sure to add the necessary keys for your environment.
 
 1. Return to visual studio and press **Shift+F5** to stop debugging.
 
