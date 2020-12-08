@@ -23,7 +23,7 @@ Afterwards, we'll look at a very simple implementation of how we can write data 
 
 Let's take a look and what information we can glean, for testing purposes, without adding anything to our bot.
 
-1. Open your **PictureBot.sln** in Visual Studio.
+1. Open your **PictureBot.sln** in Visual Studio that you were using in the previous lab.
 
 > **Note** You can use the **Starter** solution if you did not do Lab 1.
 
