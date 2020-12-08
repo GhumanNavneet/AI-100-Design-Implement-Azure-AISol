@@ -175,11 +175,11 @@ In this lab we are going to integrate language detection ability of cognitive se
 
 `Note: For cogsBaseURL and cogsKey , got to azure portal and copy the keys and endpoints of **cogsmoderator** and put key value in cogskey and put endpoint value in cogsBaseURL  and use the values of LUIS app you copied earlier to notepad`
 
-15. Also, add following values that you collect in previous Labs.
+15. Also, add following values that you collected in previous Labs.
 
 ```
-  "MicrosoftAppId": "YourAppID",
-  "MicrosoftAppPassword": "YourAppIDKey",
+  "MicrosoftAppId": "YourAppID", -> mention the application id of the web app bot created earlier.
+  "MicrosoftAppPassword": "YourAppIDKey", -> mention the secret key of the web app bot created earlier.
   "BlobStorageConnectionString": "DefaultEndpointsProtocol=https;AccountName=XXXXX;AccountKey=XXXXX;EndpointSuffix=core.windows.net",
   "BlobStorageContainer": "chatlog"
 
