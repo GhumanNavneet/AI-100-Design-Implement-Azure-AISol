@@ -101,10 +101,6 @@ A bot created using the Microsoft Bot Framework can be hosted at any publicly-ac
 
 1. Open **Visual Studio 2019** or later. When prompted to sign-in, please press sign-in and enter your respective azure credentials from the lab environment details tab and after signed-in, close the sign-in prompt tab:
 
-  ![](../images/sign-in-prompt.jpg)
-  
-  ![](../images/env-details.jpg)
-
 1. Select **Create new project**, search for **bot**.
 
 1. Scroll down until you see **Echo Bot (Bot Framework v4)**
