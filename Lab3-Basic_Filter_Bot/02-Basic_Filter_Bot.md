@@ -1012,6 +1012,8 @@ Let's get down to business. We need to fill out MainDialog within PictureBot.cs 
 
 1. Return to visual studio and press **Shift+F5** to stop debugging.
 
+1. Please save your solution and we will need to access it for the next lab.
+
 ## Resources
 
 * [Bot Builder Basics](https://docs.microsoft.com/en-us/azure/bot-service/bot-builder-basics?view=azure-bot-service-4.0&tabs=cs)
