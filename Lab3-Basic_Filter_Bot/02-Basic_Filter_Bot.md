@@ -746,7 +746,7 @@ namespace PictureBot.Responses
     {
         public static async Task ReplyWithGreeting(ITurnContext context)
         {
-            // Add a greeting
+            await context.SendActivityAsync("Hello, Im a Picture Bot");
         }
         public static async Task ReplyWithHelp(ITurnContext context)
         {
@@ -760,6 +760,7 @@ namespace PictureBot.Responses
         {
             // Add a response for the user if Regex or LUIS doesn't know
             // What the user is trying to communicate
+            await context.SendActivityAsync($"I'm sorry, I don't understand.");
         }
         public static async Task ReplyWithLuisScore(ITurnContext context, string key, double score)
         {
@@ -772,6 +773,10 @@ namespace PictureBot.Responses
         public static async Task ReplyWithOrderConfirmation(ITurnContext context)
         {
             await context.SendActivityAsync($"Ordering standard prints of your picture(s)...");
+        }
+        public static async Task ReplyWithSearchConfirmation(ITurnContext context)
+        {
+            await context.SendActivityAsync($"Searching picture(s)...");
         }
     }
 }
