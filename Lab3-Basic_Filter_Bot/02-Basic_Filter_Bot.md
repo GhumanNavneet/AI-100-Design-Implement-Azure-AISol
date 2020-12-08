@@ -600,22 +600,17 @@ Since we only have two dialogs, we can keep it simple and put them in the Pictur
 2. Navigate back to **PictureBot.cs** and replace your `using` statements with the following:
 
 ```csharp
+using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.Bot.Builder;
 using Microsoft.Bot.Schema;
 using Microsoft.Bot.Builder.Dialogs;
-using Microsoft.Extensions.Logging;
-using System.Linq;
-using PictureBot.Models;
-using PictureBot.Responses;
-using Microsoft.Bot.Builder.AI.Luis;
-using Microsoft.Azure.Search;
-using Microsoft.Azure.Search.Models;
-using System;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 using Microsoft.PictureBot;
+using PictureBot.Responses;
+using Microsoft.Extensions.Logging;
+using Azure.AI.TextAnalytics;
+using Microsoft.Bot.Builder.AI.Luis;
 ```
 
 You've just added access to your Models/Responses, as well as to the services LUIS and Azure Cognitive Search. Finally, the Newtonsoft references will help you parse the responses from LUIS, which we will see in a subsequent lab.
