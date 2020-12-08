@@ -83,7 +83,7 @@ As you can see, our current implementation is using in-memory storage. Again, th
     return dataStore;
  ```
  
-6. The code should look like below :-
+6. After performing the above steps,the code should look like below :-
 
 ```csharp
 services.AddSingleton<IStorage, BlobsStorage>(sp =>
