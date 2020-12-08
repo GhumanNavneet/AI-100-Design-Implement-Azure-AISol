@@ -120,7 +120,7 @@ A bot created using the Microsoft Bot Framework can be hosted at any publicly-ac
 
 1. For the name, type **PictureBot**, select **Create**
 
-   ![](./19.png)
+   ![](./19_new.png)
 
 1. Spend some time looking at all of the different things that are generated from the Echo Bot template. We won't spend time explaining every single file, but we **highly recommend** spending some time **later** working through and reviewing this sample (and the other Web App Bot sample - Basic Bot), if you have not already. It contains important and useful shells needed for bot development. You can find it and other useful shells and samples [here](https://github.com/Microsoft/BotBuilder-Samples).
 
@@ -162,13 +162,13 @@ A bot created using the Microsoft Bot Framework can be hosted at any publicly-ac
 
 1. To perform the installation follow these steps
 
-1. Right-Click the solution and click **Manage NuGet Packages for solution**
+1. Right-Click the solution and click **Manage NuGet Packages**
 
-   ![](./23.png)
+   ![](./23_new.png)
    
 1. Type **Microsoft.Bot.Builder.Azure.Blobs** and install the package as shown in the image. Go to **Browse**, search for the package in searchbar and then install by selecting the latest version
 
-   ![](./24.png)
+   ![](./24_new.png)
    
    i) Click ok to install the package
    
