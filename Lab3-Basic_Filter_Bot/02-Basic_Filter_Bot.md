@@ -291,25 +291,34 @@ For example, if I say "Hello bot" and the bot responds "Hi, how are you?" that i
 
 ## Lab 1.2:  Managing state and services
 
-1. Navigate again to the **Startup.cs** file
+1. Navigate again to the **Startup.cs** file.
 
-1. Update the list of `using` statements by **adding** the following:
+1. Find the below code
+
+   ```
+   namespace PictureBot
+   {
+   ```
+
+1. Add the list of `using` statements after the above code:
 
    ```csharp
-      using System;
-      using System.Linq;
-      using System.Text.RegularExpressions;
-      using Microsoft.Bot.Builder.Integration;
-      using Microsoft.Bot.Configuration;
-      using Microsoft.Bot.Connector.Authentication;
-      using Microsoft.Extensions.Options;
-      using Microsoft.Extensions.Logging;
-      using Microsoft.PictureBot;
-      using PictureBot.Bots;
-
-      using Microsoft.Bot.Builder.AI.Luis;
-      using Microsoft.Bot.Builder.Dialogs;
-      using Microsoft.Bot.Builder.Azure.Blobs;
+    using System;
+    using Microsoft.Bot.Builder.Dialogs;
+    using Microsoft.Bot.Builder.Integration;
+    using Microsoft.Bot.Connector.Authentication;
+    using Microsoft.Extensions.Logging;
+    using Microsoft.Extensions.Options;
+    using Microsoft.PictureBot;
+    using Microsoft.AspNetCore.Builder;
+    using Microsoft.Bot.Builder;
+    using Microsoft.Bot.Builder.Integration.AspNet.Core;
+    using Microsoft.Extensions.Configuration;
+    using Microsoft.Extensions.DependencyInjection;
+    using System.Text.RegularExpressions;
+    using Microsoft.Bot.Builder.Azure.Blobs;
+    using Azure.AI.TextAnalytics;
+    using Azure;
    ```
 
    We won't use all of the above namespaces just yet, but can you guess when we might?
