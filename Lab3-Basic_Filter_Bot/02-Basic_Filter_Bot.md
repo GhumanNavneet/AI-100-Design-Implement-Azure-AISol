@@ -321,10 +321,6 @@ For example, if I say "Hello bot" and the bot responds "Hi, how are you?" that i
 
    We won't use all of the above namespaces just yet, but can you guess when we might?
 
-1. After adding it should look like this:-
-
-   ![](./34.png)
-
 1. Remove the line **using PictureBot.Bots;** from the namespace **PictureBot**.      
 
 1. In the **Startup.cs** class, focus your attention on the `ConfigureServices` method which is used to add services to the bot. Review the contents carefully, noting what is built in for you.
