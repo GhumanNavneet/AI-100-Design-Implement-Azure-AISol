@@ -446,7 +446,9 @@ services.AddSingleton<PictureBotAccessors>(sp =>
         throw new InvalidOperationException("BotFrameworkOptions must be configured prior to setting up the state accessors");
     }
 
-    var conversationState = options.State.OfType<ConversationState>().FirstOrDefault();
+    var conversationState = sp.GetRequiredService<ConversationState>();
+    //var conversationState = services.BuildServiceProvider().GetService<ConversationState>();
+
     if (conversationState == null)
     {
         throw new InvalidOperationException("ConversationState must be defined and added before adding conversation-scoped state accessors.");
@@ -454,13 +456,12 @@ services.AddSingleton<PictureBotAccessors>(sp =>
 
     // Create the custom state accessor.
     // State accessors enable other components to read and write individual properties of state.
-    var accessors = new PictureBotAccessors(conversationState)
+    return new PictureBotAccessors(conversationState)
     {
         PictureState = conversationState.CreateProperty<PictureState>(PictureBotAccessors.PictureStateName),
         DialogStateAccessor = conversationState.CreateProperty<DialogState>("DialogState"),
     };
 
-    return accessors;
 });
 ```
     >**Note**: You can add the above lines of code anywhere in the **ConfigureServices** method
