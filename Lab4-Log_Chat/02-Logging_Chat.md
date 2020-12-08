@@ -63,10 +63,36 @@ As you can see, our current implementation is using in-memory storage. Again, th
 
 2. Replace the current `IStorage` line with the following to change it to a FileStorage based persistance:
 
+3. First find the below code.
+
+  ```
+  services.AddSingleton<IStorage, MemoryStorage>(sp =>
+  ```
+4. Replace it with the below code :-
+
+ ```
+ services.AddSingleton<IStorage, BlobsStorage>(sp =>
+ ```
+
+5. Then within the Curly Braces of **services.AddSingleton<IStorage, BlobsStorage>(sp =>** remove the existing code and add the following:-
+
+ ```
+    var blobConnectionString = Configuration.GetSection("BlobStorageConnectionString")?.Value;
+    var blobContainer = Configuration.GetSection("BlobStorageContainer")?.Value;
+    BlobsStorage dataStore = new BlobsStorage(blobConnectionString, blobContainer);
+    return dataStore;
+ ```
+ 
+6. The code should look like below :-
+
 ```csharp
-var blobConnectionString = Configuration.GetSection("BlobStorageConnectionString")?.Value;
-var blobContainer = Configuration.GetSection("BlobStorageContainer")?.Value;
-IStorage dataStore = new Microsoft.Bot.Builder.Azure.AzureBlobStorage(blobConnectionString, blobContainer);
+services.AddSingleton<IStorage, BlobsStorage>(sp =>
+            {
+                var blobConnectionString = Configuration.GetSection("BlobStorageConnectionString")?.Value;
+                var blobContainer = Configuration.GetSection("BlobStorageContainer")?.Value;
+                BlobsStorage dataStore = new BlobsStorage(blobConnectionString, blobContainer);
+                return dataStore;
+            });
 ```
 
 3. Switch to the Azure Portal, navigate to your blob storage account.
