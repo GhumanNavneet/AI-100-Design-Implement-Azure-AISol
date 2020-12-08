@@ -144,57 +144,61 @@ We can do this by updating what we're storing in our `UserData` object in the **
 
 1. Open **PictureState.cs**
 
-2. **After** the following code:
+1. **after** the following code:
 
-```csharp
-public class PictureState
-{
-    public string Greeted { get; set; } = "not greeted";
-```
+    ```csharp
+    public class PictureState
+    {
+        private readonly PictureBotAccessors _accessors;
+        private DialogSet _dialogs;
+    ```
 
-add:
+    add:
 
-```csharp
-// A list of things that users have said to the bot
-public List<string> UtteranceList { get; private set; } = new List<string>();
-```
+    ```csharp
+    // A list of things that users have said to the bot
+    public List<string> UtteranceList { get; private set; } = new List<string>();
+    ```
 
-In the above, we're simple creating a list where we'll store the list of messages that users send to the bot.
+    In the above, we're simple creating a list where we'll store the list of messages that users send to the bot.
 
-In this example we're choosing to use the state manager to read and write data, but you could alternatively [read and write directly from storage without using state manager](https://docs.microsoft.com/en-us/azure/bot-service/bot-builder-howto-v4-storage?view=azure-bot-service-4.0&tabs=csharpechorproperty%2Ccsetagoverwrite%2Ccsetag).
+    In this example we're choosing to use the state manager to read and write data, but you could alternatively [read and write directly from storage without using state manager](https://docs.microsoft.com/en-us/azure/bot-service/bot-builder-howto-v4-storage?view=azure-bot-service-4.0&tabs=csharpechorproperty%2Ccsetagoverwrite%2Ccsetag).
 
-> If you choose to write directly to storage, you could set up eTags depending on your scenario. By setting the eTag property to `*`, you could allow other instances of the bot to overwrite previously written data, meaning that the last writer wins. We won't get into it here, but you can [read more about managing concurrency](https://docs.microsoft.com/en-us/azure/bot-service/bot-builder-howto-v4-storage?view=azure-bot-service-4.0&tabs=csharpechorproperty%2Ccsetagoverwrite%2Ccsetag#manage-concurrency-using-etags).
+    > If you choose to write directly to storage, you could set up eTags depending on your scenario. By setting the eTag property to `*`, you could allow other instances of the bot to overwrite previously written data, meaning that the last writer wins. We won't get into it here, but you can [read more about managing concurrency](https://docs.microsoft.com/en-us/azure/bot-service/bot-builder-howto-v4-storage?view=azure-bot-service-4.0&tabs=csharpechorproperty%2Ccsetagoverwrite%2Ccsetag#manage-concurrency-using-etags).
 
-The final thing we have to do before we run the bot is add messages to our list with our `OnTurn` action.
+    The final thing we have to do before we run the bot is add messages to our list with our `OnTurn` action.
 
-3. In **PictureBot.cs**, **after** the following code:
+1. In **PictureState.cs** add the new field after `Searching` declaration
 
-```csharp
-public override async Task OnTurnAsync(ITurnContext turnContext, CancellationToken cancellationToken = default(CancellationToken))
-        {
-            if (turnContext.Activity.Type is "message")
-            {
-```
+    ```csharp
+        public List<string> UtteranceList { get; private set; } = new List<string>();
+    ```
 
-add:
+1. In **PictureBot.cs**, **after** the following code:
 
-```csharp
-var utterance = turnContext.Activity.Text;
-var state = await _accessors.PictureState.GetAsync(turnContext, () => new PictureState());
-state.UtteranceList.Add(utterance);
-await _accessors.ConversationState.SaveChangesAsync(turnContext);
-```
+    ```csharp
+    public override async Task OnTurnAsync(ITurnContext turnContext, CancellationToken cancellationToken = default(CancellationToken))
+    {
+    ```
+    add:
 
-> **Note** We have to save the state if we modify it
+    ```csharp
+      var utterance = turnContext.Activity.Text;
+      var state = await _accessors.PictureState.GetAsync(turnContext, () => new PictureState());
+      state.UtteranceList.Add(utterance);
+      await _accessors.ConversationState.SaveChangesAsync(turnContext);
+    ```
 
-The first line takes the incoming message from a user and stores it in a variable called `utterance`. The next line adds the utterance to the existing list that we created in PictureState.cs.
+    > **Note** We have to save the state if we modify it
 
-4. Press **F5** to run the bot.
+    The first line takes the incoming message from a user and stores it in a variable called `utterance`. The next line adds the utterance to the existing list that we created in PictureState.cs.
 
-5. Have another conversation with the bot. Stop the bot and check the latest blob persisted log file. What do we have now?
+1. Press **F5** to run the bot.
 
-```json
-{"$type":"System.Collections.Concurrent.ConcurrentDictionary`2[[System.String, System.Private.CoreLib],[System.Object, System.Private.CoreLib]], System.Collections.Concurrent","DialogState":{"$type":"Microsoft.Bot.Builder.Dialogs.DialogState, Microsoft.Bot.Builder.Dialogs","DialogStack":{"$type":"System.Collections.Generic.List`1[[Microsoft.Bot.Builder.Dialogs.DialogInstance, Microsoft.Bot.Builder.Dialogs]], System.Private.CoreLib","$values":[{"$type":"Microsoft.Bot.Builder.Dialogs.DialogInstance, Microsoft.Bot.Builder.Dialogs","Id":"mainDialog","State":{"$type":"System.Collections.Generic.Dictionary`2[[System.String, System.Private.CoreLib],[System.Object, System.Private.CoreLib]], System.Private.CoreLib","options":null,"values":{"$type":"System.Collections.Generic.Dictionary`2[[System.String, System.Private.CoreLib],[System.Object, System.Private.CoreLib]], System.Private.CoreLib"},"instanceId":"f80db88d-cdea-4b47-a3f6-a5bfa26ed60b","stepIndex":0}}]}},"PictureBotAccessors.PictureState":{"$type":"Microsoft.PictureBot.PictureState, PictureBot","Greeted":"greeted","UtteranceList":{"$type":"System.Collections.Generic.List`1[[System.String, System.Private.CoreLib]], System.Private.CoreLib","$values":["help"]},"Search":"","Searching":"no"}}
-```
+1. Have another conversation with the bot. Stop the bot and check the latest blob persisted log file. What do we have now?
 
->Get stuck or broken? You can find the solution for the lab up until this point under [/code/PictureBot-FinishedSolution-File](./code/PictureBot-FinishedSolution-File). You will need to insert the keys for your Azure Bot Service and your Azure Storage settings in the `appsettings.json` file. We recommend using this code as a reference, not as a solution to run, but if you choose to run it, be sure to add the necessary keys.
+    ```json
+    {"$type":"System.Collections.Concurrent.ConcurrentDictionary`2[[System.String, System.Private.CoreLib],[System.Object, System.Private.CoreLib]], System.Collections.Concurrent","DialogState":{"$type":"Microsoft.Bot.Builder.Dialogs.DialogState, Microsoft.Bot.Builder.Dialogs","DialogStack":{"$type":"System.Collections.Generic.List`1[[Microsoft.Bot.Builder.Dialogs.DialogInstance, Microsoft.Bot.Builder.Dialogs]], System.Private.CoreLib","$values":[{"$type":"Microsoft.Bot.Builder.Dialogs.DialogInstance, Microsoft.Bot.Builder.Dialogs","Id":"mainDialog","State":{"$type":"System.Collections.Generic.Dictionary`2[[System.String, System.Private.CoreLib],[System.Object, System.Private.CoreLib]], System.Private.CoreLib","options":null,"values":{"$type":"System.Collections.Generic.Dictionary`2[[System.String, System.Private.CoreLib],[System.Object, System.Private.CoreLib]], System.Private.CoreLib"},"instanceId":"f80db88d-cdea-4b47-a3f6-a5bfa26ed60b","stepIndex":0}}]}},"PictureBotAccessors.PictureState":{"$type":"Microsoft.PictureBot.PictureState, PictureBot","Greeted":"greeted","UtteranceList":{"$type":"System.Collections.Generic.List`1[[System.String, System.Private.CoreLib]], System.Private.CoreLib","$values":["help"]},"Search":"","Searching":"no"}}
+    ```
+
+    >Get stuck or broken? You can find the solution for the lab up until this point under [/code/PictureBot-FinishedSolution-File](./code/PictureBot-FinishedSolution-File). You will need to insert the keys for your Azure Bot Service and your Azure Storage settings in the `appsettings.json` file. We recommend using this code as a reference, not as a solution to run, but if you choose to run it, be sure to add the necessary keys.
