@@ -9,7 +9,7 @@ We will have to update our bot in order to use LUIS.  We can do this by modifyin
 
 > NOTE: If you intend to use the code in the Finished folder, you MUST replace the app specific information with your own app IDs and endpoints.
 
-## Lab 2.2: Adding natural language understanding
+## Lab 2.1: Adding natural language understanding
 
 ### Adding LUIS to Startup.cs
 
@@ -76,7 +76,7 @@ We will have to update our bot in order to use LUIS.  We can do this by modifyin
 
    ![](./pics/6.png)
    
-## Lab 2.3: Adding LUIS to PictureBot's MainDialog
+## Lab 2.2: Adding LUIS to PictureBot's MainDialog
 
 1. Open **PictureBot.cs**. The first thing you'll need to do is initialize the LUIS recognizer, similar to how you did for `PictureBotAccessors`. Below the commented line `private readonly PictureBotAccessors _accessors;`, add the following:
 
@@ -184,7 +184,7 @@ Let's briefly go through what we're doing in the new code additions. First, inst
 
 Another thing to note is that after every response that called LUIS, we're adding the LUIS intent value and score. The reason is just to show you when LUIS is being called as opposed to Regex (you would remove these responses from the final product, but it's a good indicator for us as we test the bot).
 
-## Lab 2.4: Testing natural speech phrases
+## Lab 2.3: Testing natural speech phrases
 
 1. Press **F5** to run the app. The localhost will pop-up in the default browser and copy the endpoint URL as shown in the below image.
 
