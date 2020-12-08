@@ -271,8 +271,6 @@ For example, if I say "Hello bot" and the bot responds "Hi, how are you?" that i
 
      > **Note** You can select "Restart conversation" to clear the conversation history.
 
-     ![Bot Emulator](../images/botemulator3.png)
-
      In the Log, you should see something similar to the following:
 
     ![ngrok](../images/ngrok.png)
