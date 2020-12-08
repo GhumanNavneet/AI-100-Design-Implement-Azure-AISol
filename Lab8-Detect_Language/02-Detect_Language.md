@@ -173,7 +173,7 @@ In this lab we are going to integrate language detection ability of cognitive se
 "luisEndPoint": ""
 ```
 
-`Note: For cogsBaseURL and cogsKey , got to azure portal and copy the keys and endpoints of **cogsmoderator** and put key value in cogskey and put endpoint value in cogsBaseURL  and use the values of LUIS app you copied earlier to notepad`
+`Note: For cogsBaseURL and cogsKey , got to azure portal and copy the key and endpoint of cogsmoderator and put key value in cogskey and put endpoint value in cogsBaseURL  and use the values of LUIS app you copied earlier to notepad`
 
 15. Also, add following values that you collected in previous Labs.
 
