@@ -96,25 +96,25 @@ using ServiceHelpers;
 1. In **ImageProcessor.cs** we start by utliziling a method to process the image, `ProcessImageAsync`. The code will utilize asynchronous processing because it will utilize services to perform the actions.
 
 ```csharp
-public static async Task<ImageInsights> ProcessImageAsync(Func<Task<Stream>> imageStreamCallback, string imageId)
-{
-	// Set up an array that we'll fill in over the course of the processor:
-  VisualFeature[] DefaultVisualFeaturesList = new VisualFeature[] { VisualFeature.Tags, VisualFeature.Description };
+public static async Task<ImageInsights> ProcessImageAsync(string imgPath, string imageId)
+    {
+      // Set up an array that we'll fill in over the course of the processor:
+      VisualFeature[] DefaultVisualFeaturesList = new VisualFeature[] { VisualFeature.Tags, VisualFeature.Description };
 
-  // Call the Computer Vision service and store the results in imageAnalysisResult:
-  var imageAnalysisResult = await VisionServiceHelper.AnalyzeImageAsync(imageStreamCallback, DefaultVisualFeaturesList);
+      // Call the Computer Vision service and store the results in imageAnalysisResult:
+      var imageAnalysisResult = await VisionServiceHelper.AnalyzeImageAsync(imgPath, DefaultVisualFeaturesList);
 
-  // Create an entry in ImageInsights:
-  ImageInsights result = new ImageInsights
-  {
-  	ImageId = imageId,
-    Caption = imageAnalysisResult.Description.Captions[0].Text,
-    Tags = imageAnalysisResult.Tags.Select(t => t.Name).ToArray()
-  };
+      // Create an entry in ImageInsights:
+      ImageInsights result = new ImageInsights
+      {
+        ImageId = imageId,
+        Caption = imageAnalysisResult.Description.Captions[0].Text,
+        Tags = imageAnalysisResult.Tags.Select(t => t.Name).ToArray()
+      };
 
-  // Return results:
-  return result;
-}
+      // Return results:
+      return result;
+    }
 ```
 
 In the above code, we use `Func<Task<Stream>>` because we want to make sure we can process the image multiple times (once for each service that needs it), so we have a Func that can hand us back a way to get the stream. Since getting a stream is usually an async operation, rather than the Func handing back the stream itself, it hands back a task that allows us to do so in an async fashion.
