@@ -315,7 +315,7 @@ For example, if I say "Hello bot" and the bot responds "Hi, how are you?" that i
     using Azure;
    ```
 
-   We won't use all of the above namespaces just yet, but can you guess when we might?
+   We won't use all of the above namespaces just yet, but can you guess when we might? Also. we may see some errors but please continue doing the lab.
 
 1. Remove the line **using PictureBot.Bots;** from the namespace **PictureBot**.      
 
