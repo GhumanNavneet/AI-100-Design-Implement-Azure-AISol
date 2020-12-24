@@ -149,8 +149,10 @@ We can do this by updating what we're storing in our `UserData` object in the **
     ```csharp
     public class PictureState
     {
-        private readonly PictureBotAccessors _accessors;
-        private DialogSet _dialogs;
+        /// <summary>
+        /// Gets or sets the number of turns in the conversation.
+        /// </summary>
+        /// <value>The number of turns in the conversation.</value>
     ```
 
     add:
