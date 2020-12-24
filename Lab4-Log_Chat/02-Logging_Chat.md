@@ -170,12 +170,6 @@ We can do this by updating what we're storing in our `UserData` object in the **
 
     The final thing we have to do before we run the bot is add messages to our list with our `OnTurn` action.
 
-1. In **PictureState.cs** add the new field after `Searching` declaration
-
-    ```csharp
-        public List<string> UtteranceList { get; private set; } = new List<string>();
-    ```
-
 1. In **PictureBot.cs**, **after** the following code:
 
     ```csharp
