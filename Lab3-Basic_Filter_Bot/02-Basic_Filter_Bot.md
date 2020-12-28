@@ -415,20 +415,21 @@ Before we talk about the custom state accessors that we need, it's important to 
 
 In the SDK, an accessor implements the `IStatePropertyAccessor` interface, which basically means it provides the ability to get, set, and delete information regarding state, so we can keep track of which step a user is in a conversation.
 
-For each accessor we create, we have to first give it a property name. For our scenario, we want to keep track of a few things:
+1. For each accessor we create, we have to first give it a property name. For our scenario, we want to keep track of a few things:
 
-   `PictureState`
-    * Have we greeted the user yet?
-        * We don't want to greet them more than once, but we want to make sure we greet them at the beginning of a conversation.
-    * Is the user currently searching for a specific term? If so, what is it?
-        * We need to keep track of if the user has told us what they want to search for, and what it is they want to search for if they have.
-   `DialogState`
-    * Is the user currently in the middle of a dialog?
-        * This is what we'll use to determine where a user is in a given dialog or conversation flow. If you aren't familiar with dialogs, don't worry, we'll get to that soon.
+    * `PictureState`
+        * Have we greeted the user yet?
+            * We don't want to greet them more than once, but we want to make sure we greet them at the beginning of a conversation.
+        * Is the user currently searching for a specific term? If so, what is it?
+            * We need to keep track of if the user has told us what they want to search for, and what it is they want to search for if they have.
 
-We can use these constructs to keep track of what we'll call `PictureState`.
+    * `DialogState`
+        * Is the user currently in the middle of a dialog?
+            * This is what we'll use to determine where a user is in a given dialog or conversation flow. If you aren't familiar with dialogs, don't worry, we'll get to that soon.
 
-11. In the **ConfigureServices** method of the **Startup.cs** file, add the `PictureState` within the list of custom state accessors and to keep track of the dialogs, you'll use the built-in `DialogState`:
+    We can use these constructs to keep track of what we'll call `PictureState`.
+
+1. In the **ConfigureServices** method of the **Startup.cs** file, add the `PictureState` within the list of custom state accessors and to keep track of the dialogs, you'll use the built-in `DialogState`:
 
 ```csharp
 // Create and register state accesssors.
