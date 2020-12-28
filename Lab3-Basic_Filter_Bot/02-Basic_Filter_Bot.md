@@ -354,7 +354,6 @@ The SDK allows you to write your own middleware or add reusable components of mi
 
    ```csharp
       private ILoggerFactory _loggerFactory;
-      private bool _isProduction = false;
    ```
 
 9. Replace the following code in the **ConfigureServices** method:
