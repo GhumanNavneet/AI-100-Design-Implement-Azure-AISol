@@ -174,7 +174,7 @@ A bot created using the Microsoft Bot Framework can be hosted at any publicly-ac
    
       ![](./26.png)
    
-1. Please follow the above step 17 for installing remaining packages.
+1. Please follow the above steps 17 and 18 for installing remaining packages.
 
 1. Navigate to **Startup.cs** file and add the below line of code in `namespace PictureBot` and comment the particular code as we will need to use them afterwards:
 
