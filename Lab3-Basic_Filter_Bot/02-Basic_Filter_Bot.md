@@ -241,10 +241,6 @@ For example, if I say "Hello bot" and the bot responds "Hi, how are you?" that i
 
    ![](./bot_1.png)
 
-1. Please update the bot emulator. Select **Install this update and restart emulator**
-
-   ![](./30.png)
-
 1. On the welcome page, select **Create a new bot configuration**
 
    ![](./31.png)
