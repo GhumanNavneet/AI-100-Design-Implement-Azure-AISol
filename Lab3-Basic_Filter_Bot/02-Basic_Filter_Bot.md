@@ -19,7 +19,7 @@ A bot created using the Microsoft Bot Framework can be hosted at any publicly-ac
 
 1. Navigate to the `Azure portal` from virtual machine.
 
-2. In the portal, navigate to your resource group, then select **+Add** and search for **bot**.
+2. In the portal, navigate to your resource group, then select **+Add** and search for **web app bot**.
 
    ![Bot template area is highlighted and the language and bot type is selected.](../images/rg.jpg 'Select the bot type')
    
