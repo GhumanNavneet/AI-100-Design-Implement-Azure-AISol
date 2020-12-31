@@ -52,17 +52,15 @@ We will have to update our bot in order to use LUIS.  We can do this by modifyin
         return new LuisRecognizer(recognizerOptions);
     });
     ```
-
-
- ![](./pics/4_1.png)
+      ![](./pics/4_1.png)
 
 1. Modify the **appsettings.json** to include the following properties, be sure to fill them in with your LUIS instance values:
 
-```json
-"luisAppId": "",
-"luisAppKey": "",
-"luisEndPoint": ""
-```
+    ```json
+     "luisAppId": "",
+     "luisAppKey": "",
+     "luisEndPoint": ""
+    ```
 
 1. To find the luisAppId, Navigate to the cognitive services website and then go to Manage -> Settings and copy the application Id
 
