@@ -78,7 +78,7 @@ We will have to update our bot in order to use LUIS.  We can do this by modifyin
    
 ## Lab 2.2: Adding LUIS to PictureBot's MainDialog
 
-1. Open **PictureBot.cs**. The first thing you'll need to do is initialize the LUIS recognizer, similar to how you did for `PictureBotAccessors`. Below the commented line `private readonly PictureBotAccessors _accessors;`, add the following:
+1. Expand **Bots** folder and open **PictureBot.cs**. The first thing you'll need to do is initialize the LUIS recognizer, similar to how you did for `PictureBotAccessors`. Below the commented line `private readonly PictureBotAccessors _accessors;`, add the following:
 
     ```csharp
     private LuisRecognizer _recognizer { get; } = null;
