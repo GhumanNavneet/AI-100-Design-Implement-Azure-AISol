@@ -107,16 +107,16 @@ services.AddSingleton<IStorage, BlobsStorage>(sp =>
 
    ![](./5.png)
    
-6. If you haven't already done so, click **Access keys** and record your connection string.
+6. If you haven't already done so, click **Access keys** and record your connection string. you need to click on **show keys** to view the values
 
    ![](./6.png)
 
 7. Open the **appsettings.json** and add your blob connection string details:
 
-```json
-"BlobStorageConnectionString": "",
-"BlobStorageContainer" :  "chatlog"
-```
+  ```json
+  "BlobStorageConnectionString": "",
+  "BlobStorageContainer" :  "chatlog"
+  ```
 
 8. Press **F5** to run the bot.
 
