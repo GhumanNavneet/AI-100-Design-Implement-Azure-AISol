@@ -47,57 +47,57 @@ A bot created using the Microsoft Bot Framework can be hosted at any publicly-ac
 
 10. Now configure a new App service plan by clicking on **App service plan/Location - Configure required settings**.
 
-   ![](./6.png)
+    ![](./6.png)
 
 11. On the app service plan pane, click on **+ Create New**
 
-   ![](./7.png)
+    ![](./7.png)
    
 12. Enter App service plan name and select the region as same as that of the web app bot and click ok.
    
-   ![](./8.png)
+    ![](./8.png)
 
-11. Turn Application Insights **off**.
+13. Turn Application Insights **off**.
 
-12. **Do not** change or select on **Auto create App ID and password**, we will get to that later.
+14. **Do not** change or select on **Auto create App ID and password**, we will get to that later.
 
-13. Select **Create**
+15. Select **Create**
 
    ![](./9.png)
 
-14. When it's deployed, navigate to the new Azure Web App Bot Resource.
+16. When it's deployed, navigate to the new Azure Web App Bot Resource.
 
    ![](./10.png)
 
-15. Under **Bot Management**, select **Settings**
+17. Under **Bot Management**, select **Settings**
 
-16. Select the **Manage** link for the **Microsoft App ID**
+18. Select the **Manage** link for the **Microsoft App ID**
 
    ![](./11.png)
 
-17. Select **New client secret**
+19. Select **New client secret**
 
    ![](./12.png)
 
-18. For the name, type **PictureBot**
+20. For the name, type **PictureBot**
 
-19. For the expires, select **Never**
+21. For the expires, select **Never**
 
-20. Select **Add**
+22. Select **Add**
 
    ![](./13.png)
 
-21. Record the secret into notepad or similar for later use in the lab(s).
+23. Record the secret into notepad or similar for later use in the lab(s).
 
    ![](./14.png)
 
-22. Select **Overview** from the same window please don't press back, record the **Application ID** into notepad or similar for later use in the lab(s).
+24. Select **Overview** from the same window please don't press back, record the **Application ID** into notepad or similar for later use in the lab(s).
 
    ![](./15_1.png)
 
-23. Navigate back to the **web app bot** resource, under **Bot management**, select the **Test in Web Chat** tab
+25. Navigate back to the **web app bot** resource, under **Bot management**, select the **Test in Web Chat** tab
 
-24. Once it starts, explore what it is capable of doing.  As you will see, it only echos back your message.
+26. Once it starts, explore what it is capable of doing.  As you will see, it only echos back your message.
 
    ![](./16.png)
 
