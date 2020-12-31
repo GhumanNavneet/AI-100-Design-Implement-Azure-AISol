@@ -62,6 +62,10 @@ We will have to update our bot in order to use LUIS.  We can do this by modifyin
      "luisEndPoint": ""
     ```
 
+1. Also please provide value for **BlobStorageConnectionString": "",** , you can navigate in the right side and click on environment details tab and can find the value for it.
+
+    ![](./pics/ai-100-lab7-new1.png)
+    
 1. To find the luisAppId, Navigate to the cognitive services website and then go to Manage -> Settings and copy the application Id
 
    ![](./pics/5.png)
