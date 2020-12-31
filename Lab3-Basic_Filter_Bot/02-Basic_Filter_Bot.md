@@ -103,7 +103,7 @@ A bot created using the Microsoft Bot Framework can be hosted at any publicly-ac
 
 ## Lab 1.1: Creating a simple bot and running it
 
-1. Open **Visual Studio 2019** or later. When prompted to sign-in, please press sign-in and enter your respective azure credentials from the lab environment details tab and after signed-in, close the sign-in prompt tab:
+1. Open **Visual Studio 2019**. When prompted to sign-in, please press sign-in and enter your respective azure credentials from the lab environment details tab and after signed-in, close the sign-in prompt tab:
 
 1. Select **Create new project**, search for **bot**.
 
@@ -116,15 +116,13 @@ A bot created using the Microsoft Bot Framework can be hosted at any publicly-ac
 
 1. Select **Next**
 
-      > **Note** If you do not see the Echo Bot template, you need to install the Visual Studio add-in from the pre-req steps.
-
 1. For the name, type **PictureBot**, select **Create**
 
    ![](./19_new.png)
 
 1. Spend some time looking at all of the different things that are generated from the Echo Bot template. We won't spend time explaining every single file, but we **highly recommend** spending some time **later** working through and reviewing this sample (and the other Web App Bot sample - Basic Bot), if you have not already. It contains important and useful shells needed for bot development. You can find it and other useful shells and samples [here](https://github.com/Microsoft/BotBuilder-Samples).
 
-1. Start by right-clicking on the Solution and selecting **Build**. This will restore the nuget packages.
+1. Start by right-clicking on the Solution and selecting **Build**, This will restore the nuget packages.
 
 1. Open the **appsettings.json** file, update it by adding your bot service information you recorded above:
 
@@ -162,11 +160,11 @@ A bot created using the Microsoft Bot Framework can be hosted at any publicly-ac
 
 1. To perform the installation follow these steps
 
-1. Right-Click the solution and click **Manage NuGet Packages**
+1. Right-Click the solution and click **Manage NuGet Packages**.
 
    ![](./23_new.png)
    
-1. Type **Microsoft.Bot.Builder.Azure.Blobs** and install the package as shown in the image. Go to **Browse**, search for the package in searchbar and then install by selecting the latest version
+1. Type **Microsoft.Bot.Builder.Azure.Blobs** and install the package as shown in the image. Go to **Browse**, search for the package in searchbar and then install by selecting the latest version.
 
    ![](./24_new.png)
    
@@ -233,7 +231,7 @@ For example, if I say "Hello bot" and the bot responds "Hi, how are you?" that i
 
 1. The browser will pop-up displaying bot web page as shown in the below image. Please copy the same as mentioned in the image to notepad.
 
-   ![](./29.png)      
+    ![](./29.png)      
 
      >Get stuck or broken? You can find the solution for the lab up until this point under {GitHubPath}/code/Finished/PictureBot-Part0. The readme file within the solution (once you open it) will tell you what keys you need to add in order to run the solution.
 
@@ -573,9 +571,9 @@ There are many different methods and preferences for developing bots. The SDK al
 
 This PictureBot will be organized in the following way:
 
-* **Dialogs** - the business logic for editing the models
-* **Responses** - classes which define the outputs to the users
-* **Models** - the objects to be modified
+  * **Dialogs** - the business logic for editing the models
+  * **Responses** - classes which define the outputs to the users
+  * **Models** - the objects to be modified
 
 1. Create two new folders "**Responses**" and "**Models**" within your project by right-clicking the project and selecting **Add->New Folder**
 
@@ -883,7 +881,9 @@ middleware.Add(new RegExpRecognizerMiddleware()
 
 Let's get down to business. We need to fill out MainDialog within PictureBot.cs so that our bot can react to what users say they want to do.  Based on our results from Regex, we need to direct the conversation in the right direction. Read the code carefully to confirm you understand what it's doing.
 
-1. In **PictureBot.cs**, add following namespaces to the top of the file
+1. In **PictureBot.cs**, add following namespaces to the top of the file 
+
+   > **Note:-** If the namespaces already exists please ignore and continue to the next step.
 
     ```csharp
     using Microsoft.Bot.Schema;
@@ -971,29 +971,27 @@ Let's get down to business. We need to fill out MainDialog within PictureBot.cs 
 
 1. Find function `OnMessageActivityAsync` and replace with new function `OnTurnAsync`
 
+  ```csharp
+   public override async Task OnTurnAsync(ITurnContext turnContext, CancellationToken cancellationToken = default(CancellationToken))
+   {
+     if (turnContext.Activity.Type is "message")
+     {
+       // Establish dialog context from the conversation state.
+        var dc = await _dialogs.CreateContextAsync(turnContext);
+       // Continue any current dialog.
+        var results = await dc.ContinueDialogAsync(cancellationToken);
 
-    ```csharp
-    public override async Task OnTurnAsync(ITurnContext turnContext, CancellationToken cancellationToken = default(CancellationToken))
-    {
-        if (turnContext.Activity.Type is "message")
-        {
-            // Establish dialog context from the conversation state.
-            var dc = await _dialogs.CreateContextAsync(turnContext);
-            // Continue any current dialog.
-            var results = await dc.ContinueDialogAsync(cancellationToken);
-
-            // Every turn sends a response, so if no response was sent,
-            // then there no dialog is currently active.
-            if (!turnContext.Responded)
-            {
-                // Start the main dialog
-                await dc.BeginDialogAsync("mainDialog", null, cancellationToken);
-            }  
-        }          
+        // Every turn sends a response, so if no response was sent,
+        // then there no dialog is currently active.
+        if (!turnContext.Responded)
+         {
+           // Start the main dialog
+            await dc.BeginDialogAsync("mainDialog", null, cancellationToken);
+          }  
+     }          
     }
-    ```
-
-
+  ```
+  
 1. Press **F5** to run the bot.
 
 1. Using the bot emulator, test the bot by sending some commands:
