@@ -45,11 +45,15 @@ A bot created using the Microsoft Bot Framework can be hosted at any publicly-ac
 
 9. Select **OK**, make sure that **Echo Bot** is displayed.
 
-10. Configure a new App service plan (put it in the same location as your bot)
+10. Now configure a new App service plan by clicking on **App service plan/Location - Configure required settings**.
 
    ![](./6.png)
-   
+
+11. On the app service plan pane, click on **+ Create New**
+
    ![](./7.png)
+   
+12. Enter App service plan name and select the region as same as that of the web app bot and click ok.
    
    ![](./8.png)
 
