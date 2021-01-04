@@ -971,9 +971,9 @@ Let's get down to business. We need to fill out MainDialog within PictureBot.cs 
 
 1. Find function `OnMessageActivityAsync` and replace with new function `OnTurnAsync`
 
-  ```csharp
-   public override async Task OnTurnAsync(ITurnContext turnContext, CancellationToken cancellationToken = default(CancellationToken))
-   {
+    ```csharp
+    public override async Task OnTurnAsync(ITurnContext turnContext, CancellationToken cancellationToken = default(CancellationToken))
+    {
      if (turnContext.Activity.Type is "message")
      {
        // Establish dialog context from the conversation state.
@@ -988,9 +988,9 @@ Let's get down to business. We need to fill out MainDialog within PictureBot.cs 
            // Start the main dialog
             await dc.BeginDialogAsync("mainDialog", null, cancellationToken);
           }  
-     }          
-    }
-  ```
+      }          
+     }
+    ```
   
 1. Press **F5** to run the bot.
 
