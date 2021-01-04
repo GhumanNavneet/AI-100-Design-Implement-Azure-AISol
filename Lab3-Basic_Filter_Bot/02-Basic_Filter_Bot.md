@@ -427,7 +427,7 @@ In the SDK, an accessor implements the `IStatePropertyAccessor` interface, which
 
     We can use these constructs to keep track of what we'll call `PictureState`.
 
-1. In the **ConfigureServices** method of the **Startup.cs** file, add the `PictureState` within the list of custom state accessors and to keep track of the dialogs, you'll use the built-in `DialogState`:
+2. In the **ConfigureServices** method of the **Startup.cs** file, add the `PictureState` within the list of custom state accessors and to keep track of the dialogs, you'll use the built-in `DialogState`:
 
 ```csharp
 // Create and register state accesssors.
@@ -469,13 +469,13 @@ You should see an error (red squiggly) beneath some of the terms. But before fix
 
 Now back to the errors you're seeing. You've said you're going to store this information, but you haven't yet specified where or how. We have to update "PictureState.cs" and "PictureBotAccessor.cs" to have and access the information we want to store.
 
-12. Right-click the project and select **Add->Class**, select a Class file and name it **PictureState**.
+3. Right-click the project and select **Add->Class**, select a Class file and name it **PictureState**.
 
    ![](./41.png)
    
    ![](./42.png)
 
-13. Replace the existing code in **PictureState.cs** with the following code
+4. Replace the existing code in **PictureState.cs** with the following code
 
 ```csharp
 using System.Collections.Generic;
@@ -500,11 +500,11 @@ namespace Microsoft.PictureBot
 }
 ```
 
-14. Review the code.  This is where we'll store information about the active conversation.  Feel free to add some comments explaining the purposes of the strings. Now that you have PictureState appropriately initialized, you can create the PictureBotAccessor, to remove the errors you were getting in **Startup.cs**.
+5. Review the code.  This is where we'll store information about the active conversation.  Feel free to add some comments explaining the purposes of the strings. Now that you have PictureState appropriately initialized, you can create the PictureBotAccessor, to remove the errors you were getting in **Startup.cs**.
 
-15. Right-click the project and select **Add->Class**, select a Class file and name it **PictureBotAccessors**
+6. Right-click the project and select **Add->Class**, select a Class file and name it **PictureBotAccessors**
 
-16. Replace the existing code in **PictureBotAccessors.cs** with the following code
+7. Replace the existing code in **PictureBotAccessors.cs** with the following code
 
 ```csharp
 using System;
@@ -561,9 +561,9 @@ namespace Microsoft.PictureBot
 }
 ```
 
-17. Review the code, notice the implementation of `PictureStateName` and `PictureState`.
+8. Review the code, notice the implementation of `PictureStateName` and `PictureState`.
 
-18. Wondering if you configured it correctly? Return to **Startup.cs** and confirm your errors around creating the custom state accessors have been resolved.
+9. Wondering if you configured it correctly? Return to **Startup.cs** and confirm your errors around creating the custom state accessors have been resolved.
 
 ## Lab 1.3: Organizing code for bots
 
