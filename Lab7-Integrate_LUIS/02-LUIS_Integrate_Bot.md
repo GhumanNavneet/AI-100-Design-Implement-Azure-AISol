@@ -114,7 +114,7 @@ We will have to update our bot in order to use LUIS.  We can do this by modifyin
 
     > Again, this should look very similar to how we initialized the instance of `_accessors`.
 
-As far as updating our `MainDialog` goes, there's no need for us to add anything to the initial `GreetingAsync` step, because regardless of user input, we want to greet the user when the conversation starts.
+    As far as updating our `MainDialog` goes, there's no need for us to add anything to the initial `GreetingAsync` step, because regardless of user input, we want to greet the user when the conversation starts.
 
 1. In `MainMenuAsync`, we do want to start by trying Regex, so we'll leave most of that. However, if Regex doesn't find an intent, we want the `default` action to be different. That's when we want to call LUIS.
 
