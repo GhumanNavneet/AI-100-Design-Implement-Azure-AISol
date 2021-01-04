@@ -336,25 +336,25 @@ Middleware is simply a class or set of classes that sit between the adapter and 
 
 The SDK allows you to write your own middleware or add reusable components of middleware created by others. Every activity coming in or out of your bot flows through your middleware. We'll get deeper into this later in the lab, but for now, it's important to understand that every activity flows through your middleware, because it is located in the `ConfigureServices` method that gets called at run time (which runs in between every message being sent by a user and `OnMessageActivityAsync`).
 
-5. Add a new folder called **Middleware**. Right-Click on the PictureBot project and Go-to **Add** and then click on **New Folder**.
+1. Add a new folder called **Middleware**. Right-Click on the PictureBot project and Go-to **Add** and then click on **New Folder**.
 
    ![](./newFolder.png)
 
-6. Right-click on the **Middleware** folder and select **Add -> Existing Item**.
+2. Right-click on the **Middleware** folder and select **Add -> Existing Item**.
 
    ![](./existing_item.png)
 
-7. Navigate to **C:\AllFiles\AI-100-Design-Implement-Azure-AISol-master\Lab3-Basic_Filter_Bot\code\Middleware**, select all three files, and select **Add**.
+3. Navigate to **C:\AllFiles\AI-100-Design-Implement-Azure-AISol-master\Lab3-Basic_Filter_Bot\code\Middleware**, select all three files, and select **Add**.
 
    ![](./36.png)
 
-8. Add the following variables to your **Startup** class:
+4. Add the following variables to your **Startup** class:
 
    ```csharp
       private ILoggerFactory _loggerFactory;
    ```
 
-9. Replace the following code in the **ConfigureServices** method:
+5. Replace the following code in the **ConfigureServices** method:
 
    ```csharp
       services.AddTransient<IBot, PictureBot>();
@@ -387,7 +387,7 @@ services.AddBot<PictureBot.Bots.PictureBot>(options =>
 });
 ```
 
-10. Replace the **Configure** method with the following code:
+6. Replace the **Configure** method with the following code:
 
 ```csharp
 public void Configure(IApplicationBuilder app, ILoggerFactory loggerFactory)
