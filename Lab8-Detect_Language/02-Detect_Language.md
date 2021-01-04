@@ -8,7 +8,7 @@ In this lab we are going to integrate language detection ability of cognitive se
 
 1. Sign in using the azure credentials provided.You can get the credentials from the **Environment Details** page.
 
-1. In **Welcome to the Language Understanding Intelligent Service (LUIS)!**, select the subscription available and **Select or create an authoring resource**.
+1. In **Welcome to the Language Understanding Intelligent Service (LUIS)!**, select the subscription available and click **Select or create an authoring resource**.
 
 1. On the **My Apps** dashboard, select your **Subscription** and **Authoring resource** from the dropdown menu.
 
