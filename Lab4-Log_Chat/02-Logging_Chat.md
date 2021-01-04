@@ -53,28 +53,22 @@ You can read more about testing, debugging, and logging with the emulator [here]
 
 The default bot storage provider uses in-memory storage that gets disposed of when the bot is restarted. This is good for testing purposes only. If you want to persist data but do not want to hook your bot up to a database, you can use the Azure storage provider or build your own provider using the SDK.
 
-1. Open the **Startup.cs** file.  Since we want to use this process for every message, we'll use the `ConfigureServices` method in our Startup class to add storing information to an Azure Blob file. Notice that currently we're using:
-
-```csharp
-IStorage dataStore = new MemoryStorage();
-```
-
 As you can see, our current implementation is using in-memory storage. Again, this memory storage is recommended for local bot debugging only. When the bot is restarted, anything stored in memory will be gone.
 
-2. Replace the current `IStorage` line with the following to change it to a FileStorage based persistance:
+1. Replace the current `IStorage` line with the following to change it to a FileStorage based persistance:
 
-3. First find the below code.
+2. First find the below code.
 
   ```
   services.AddSingleton<IStorage, MemoryStorage>(sp =>
   ```
-4. Replace it with the below code :-
+3. Replace it with the below code :-
 
  ```
  services.AddSingleton<IStorage, BlobsStorage>(sp =>
  ```
 
-5. Then within the Curly Braces of **services.AddSingleton<IStorage, BlobsStorage>(sp =>** remove the existing code and add the following:-
+4. Then within the Curly Braces of **services.AddSingleton<IStorage, BlobsStorage>(sp =>** remove the existing code and add the following:-
 
  ```
     var blobConnectionString = Configuration.GetSection("BlobStorageConnectionString")?.Value;
@@ -83,7 +77,7 @@ As you can see, our current implementation is using in-memory storage. Again, th
     return dataStore;
  ```
  
-6. After performing the above steps,the code should look like below :-
+5. After performing the above steps,the code should look like below :-
 
 ```csharp
 services.AddSingleton<IStorage, BlobsStorage>(sp =>
@@ -95,40 +89,40 @@ services.AddSingleton<IStorage, BlobsStorage>(sp =>
             });
 ```
 
-3. Switch to the Azure Portal, navigate to your blob storage account.
+6. Switch to the Azure Portal, navigate to your blob storage account.
 
    ![](./4.png)
 
-4. From the **Overview** tab, click **Containers**
+7. From the **Overview** tab, click **Containers**
 
-5. Check if a **chatlog** container exists, if it does not click **+Container**:
+8. Check if a **chatlog** container exists, if it does not click **+Container**:
 
 - For the name, type **chatlog**, click **OK**
 
    ![](./5.png)
    
-6. If you haven't already done so, click **Access keys** and record your connection string. you need to click on **show keys** to view the values
+9. If you haven't already done so, click **Access keys** and record your connection string. you need to click on **show keys** to view the values
 
    ![](./6.png)
 
-7. Open the **appsettings.json** and add your blob connection string details:
+10. Open the **appsettings.json** and add your blob connection string details:
 
   ```json
   "BlobStorageConnectionString": "",
   "BlobStorageContainer" :  "chatlog"
   ```
 
-8. Press **F5** to run the bot.
+11. Press **F5** to run the bot.
 
-9. In the emulator, go through a sample conversation with the bot.
+12. In the emulator, go through a sample conversation with the bot.
 
 > **Note** If you do note get a reply back, check your Azure Storage Account connection string
 
-10. Switch to the Azure Portal, navigate to your blob storage account
+13. Switch to the Azure Portal, navigate to your blob storage account
 
-11. Click **Containers**, then open the **ChatLog** container
+14. Click **Containers**, then open the **ChatLog** container
 
-12. Select the chat log file, it should start with **emulator...**, then select **Edit blob**.  What do you see in the files? What don't you see that you were expecting/hoping to see?
+15. Select the chat log file, it should start with **emulator...**, then select **Edit blob**.  What do you see in the files? What don't you see that you were expecting/hoping to see?
 
 You should see something similar to this:
 
