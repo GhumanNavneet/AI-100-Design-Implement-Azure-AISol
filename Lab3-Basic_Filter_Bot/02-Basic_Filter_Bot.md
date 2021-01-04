@@ -63,21 +63,21 @@ A bot created using the Microsoft Bot Framework can be hosted at any publicly-ac
 
 15. Select **Create**
 
-   ![](./9.png)
+    ![](./9.png)
 
 16. When it's deployed, navigate to the new Azure Web App Bot Resource.
 
-   ![](./10.png)
+    ![](./10.png)
 
 17. Under **Bot Management**, select **Settings**
 
 18. Select the **Manage** link for the **Microsoft App ID**
 
-   ![](./11.png)
+    ![](./11.png)
 
 19. Select **New client secret**
 
-   ![](./12.png)
+    ![](./12.png)
 
 20. For the name, type **PictureBot**
 
@@ -85,21 +85,21 @@ A bot created using the Microsoft Bot Framework can be hosted at any publicly-ac
 
 22. Select **Add**
 
-   ![](./13.png)
+    ![](./13.png)
 
 23. Record the secret into notepad or similar for later use in the lab(s).
 
-   ![](./14.png)
+    ![](./14.png)
 
 24. Select **Overview** from the same window please don't press back, record the **Application ID** into notepad or similar for later use in the lab(s).
 
-   ![](./15_1.png)
+    ![](./15_1.png)
 
 25. Navigate back to the **web app bot** resource, under **Bot management**, select the **Test in Web Chat** tab
 
 26. Once it starts, explore what it is capable of doing.  As you will see, it only echos back your message.
 
-   ![](./16.png)
+    ![](./16.png)
 
 ## Lab 1.1: Creating a simple bot and running it
 
