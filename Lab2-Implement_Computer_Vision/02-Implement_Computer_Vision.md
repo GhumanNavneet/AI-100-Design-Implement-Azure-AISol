@@ -203,7 +203,7 @@ i) To get the cognitive services details, navigate to **cogscompvis** from resou
 
   ![](media/cog-comp-vision.jpg)
   
-ii) To retrieve storage account values, navigate to storage account **aistorage-{uniqueid}** from resource group **ai-100-{uniqueid}** and get the connection string as shown below:-
+ii) To retrieve storage account values, navigate to storage account **aistorage-{uniqueid}** from resource group **ai-100-{uniqueid}** and get the connection string as shown below, click on **Show Keys** to copy the value of connection string:-
 
   ![](media/storage-accesskey.jpg)
   
