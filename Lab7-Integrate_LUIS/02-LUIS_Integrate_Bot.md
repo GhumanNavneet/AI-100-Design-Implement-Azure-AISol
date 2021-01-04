@@ -74,7 +74,7 @@ We will have to update our bot in order to use LUIS.  We can do this by modifyin
 
    ![](./pics/7.png)
    
-1. After editing the **appsettings.json**, it will look like the below image. Leave MicrosoftAppID and MicrosoftAppPassword Blank.
+1. After editing the **appsettings.json**, it will look like the below image. Provide the blob connection string, navigate to the storage account - **aistorageuniqueid** go to access keys and click on show keys and copy the connection string. Leave MicrosoftAppID and MicrosoftAppPassword Blank.
 
    ![](./pics/6.png)
    
