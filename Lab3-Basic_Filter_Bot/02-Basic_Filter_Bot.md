@@ -184,7 +184,7 @@ A bot created using the Microsoft Bot Framework can be hosted at any publicly-ac
     using PictureBot.Bots;
    ```
   
-  After adding, it looks like below.
+     After adding, it looks like below.
    ```
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
